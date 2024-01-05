@@ -37,7 +37,32 @@ var rs_mpo_RowConverter = function(d) {
 };
 
 
-function generate_roadway_safety_viz(xValues, yValues_state_perf, yValues_state_targ, yValues_mpo_perf, div_id, layout) {
+function generate_roadway_safety_viz(xValues, yValues_state_perf, yValues_state_targ, yValues_mpo_perf, canvas_id, title) {
+	var ctx = document.getElementById(canvas_id);
+	
+	var cfg = {
+		type: 'bar',
+		data: {
+		datasets: [	{ label: 'Performance (State)',
+					  data: yValues_state_perf
+					},
+					{ label: 'Target (State)',
+					  data: yValues_state_targ
+					},
+					{ label: 'Performance (MPO)',
+					  data: yValues_mpo_perf
+					}
+				],
+		labels: xValues
+		}
+	}
+	new Chart(ctx, cfg);
+	
+	return; // for now
+	
+	
+	
+	// Old code retained below, mostly for quick reference to color palettes
 	// 'trace' for statewide performance data
 	var trace_state_perf = {
 	  x: xValues,
@@ -102,7 +127,8 @@ function generate_roadway_safety_viz(xValues, yValues_state_perf, yValues_state_
 	} else {
 		data = [trace_state_perf, trace_mpo_perf, config];
 	}
-	Plotly.newPlot(div_id, data, layout);	
+
+	alert('Exiting generate_roadway_safety_viz');
 } // generate_roadway_safety_viz
 	
 function roadway_safety_viz(rs_state_data, rs_mpo_data) {
@@ -110,21 +136,12 @@ function roadway_safety_viz(rs_state_data, rs_mpo_data) {
 	
 	var xValues = [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022];
 	var yValues_state_perf = [], yValues_state_targ = [], yValues_mpo_perf = [];
-	var div_id = '';
-	var layout = {
-		autosize: true,
-		width: 	1000,
-		xaxis: { type: 'category',
-				 automargin: true },
-		yaxis: { automargin: true }
-	};
-	var mylayout = {};
+	var canvas_id = '';
+	var title = '';
 	
 	// Roadway fatalities: 5-year rolling average
-	div_id = 'roadway-fatalities-5-yr-viz';
-	
-	mylayout = JSON.parse(JSON.stringify(layout));
-	mylayout.title = 'Roadway Fatalities - 5-year Rolling Average';
+	canvas_id = 'roadway-fatalities-5-yr-viz';
+	title = 'Roadway Fatalities - 5-year Rolling Average';
 	
 	var road_fat_state = _.find(rs_state_data, function(o) { return o.perf_meas == 'Fatalities_5 year rolling average'; });     
 	var road_fat_mpo   = _.find(rs_mpo_data, function(o) { return o.perf_meas == 'Fatalities_5 year rolling average'; });
@@ -135,7 +152,10 @@ function roadway_safety_viz(rs_state_data, rs_mpo_data) {
 	yValues_mpo_perf = [ road_fat_mpo.perf_2013, road_fat_mpo.perf_2014, road_fat_mpo.perf_2015, road_fat_mpo.perf_2016,road_fat_mpo.perf_2017, 
 						 road_fat_mpo.perf_2018, road_fat_mpo.perf_2019, road_fat_mpo.perf_2020, road_fat_mpo.perf_2021, road_fat_mpo.perf_2022 ];	
 				
-	generate_roadway_safety_viz(xValues, yValues_state_perf, yValues_state_targ, yValues_mpo_perf, div_id, mylayout);
+	generate_roadway_safety_viz(xValues, yValues_state_perf, yValues_state_targ, yValues_mpo_perf, canvas_id, title);
+	
+	
+	return; // for now
 	
 	
 	// Fatalities - 1 year
