@@ -42,7 +42,7 @@ function initialize() {
 		ttr_mpo_data	= files[7];
 		cmaq_mpo_data 	= files[8];
 		//
-		alert('Initialization successful.');
+		console.log('Initialization successful.');
 		var _DEBUG_HOOK = 0;
 
 		roadway_safety_viz(rs_state_data, rs_mpo_data);
