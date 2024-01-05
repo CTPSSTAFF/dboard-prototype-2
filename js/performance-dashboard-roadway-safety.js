@@ -40,94 +40,39 @@ var rs_mpo_RowConverter = function(d) {
 function generate_roadway_safety_viz(xValues, yValues_state_perf, yValues_state_targ, yValues_mpo_perf, canvas_id, title) {
 	var ctx = document.getElementById(canvas_id);
 	
+	var state_perf_dataset = { 	label: 'Performance (State)',
+								backgroundColor: 'rgba(58,200,225,.5)',
+								borderColor:  'rgb(8,48,107)',			// SETTING 'borderColor' DOESN'T SEEM TO WORK
+								data: yValues_state_perf
+						};
+	var state_targ_dataset = { 	label: 'Target (State)',
+								backgroundColor: 'rgb(206,228,240)',
+								borderColor: 'rgb(8,48,107)',			// SETTING 'borderColor' DOESN'T SEEM TO WORK
+								data: yValues_state_targ
+							};
+	var mpo_perf_dataset = 	{ 	label: 'Performance (MPO)',
+								backgroundColor: 'rgba(255,144,17,.5)',
+								borderColor: 'rgb(8,48,107)',			// SETTING 'borderColor' DOESN'T SEEM TO WORK
+								data: yValues_mpo_perf
+							};
+							
+	// Note: Handle case that some viz's not having state target data
+	var aDatasets = [];
+	if (yValues_state_targ != null) {
+		aDatasets = [ state_perf_dataset, state_targ_dataset, mpo_perf_dataset ];
+	} else {
+		aDatasets = [ state_perf_dataset, mpo_perf_dataset ];
+	}
+	
 	var cfg = {
 		type: 'bar',
 		data: {
-		datasets: [	{ label: 'Performance (State)',
-					  data: yValues_state_perf
-					},
-					{ label: 'Target (State)',
-					  data: yValues_state_targ
-					},
-					{ label: 'Performance (MPO)',
-					  data: yValues_mpo_perf
-					}
-				],
-		labels: xValues
+			datasets: aDatasets,
+			labels: xValues
 		}
 	}
 	new Chart(ctx, cfg);
 	
-	return; // for now
-	
-	
-	
-	// Old code retained below, mostly for quick reference to color palettes
-	// 'trace' for statewide performance data
-	var trace_state_perf = {
-	  x: xValues,
-	  y: yValues_state_perf,
-	  type: 'bar',
-	  name: 'Performance (State)',
-	  text: yValues_state_perf.map(String),
-	  textposition: 'auto',
-	  hoverinfo: 'none',
-	  marker: {
-		color: 'rgba(58,200,225,.5)',
-		line: {
-		  color: 'rgb(8,48,107)',
-		  width: 1.5
-		}
-	  }
-	};	
-	// 'trace' for statewide target data
-	// There are some metrics for which there is no statewide target data.
-	if (yValues_state_targ != null) {
-		var trace_state_targ = { 
-		  x: xValues,
-		  y: yValues_state_targ,
-		  type: 'bar',
-		  name: 'Target (State)',
-		  text: yValues_state_targ.map(String),
-		  textposition: 'auto',
-		  hoverinfo: 'none',
-		 //  opacity: 0.5,
-		  marker: {
-			// color: 'rgb(158,202,225)',
-			color: 'rgb(206,228,240)',
-			line: {
-			  color: 'rgb(8,48,107)',
-			  width: 1.5
-			},
-			pattern: { fillmode: 'overlay', shape: 'X' }
-		  }
-		};
-	}
-	// 'trace' for MPO performance data
-	var trace_mpo_perf = {
-	  x: xValues,
-	  y: yValues_mpo_perf,
-	  type: 'bar',
-	  name: 'Performance (MPO)',
-	  text: yValues_mpo_perf.map(String),
-	  textposition: 'auto',
-	  hoverinfo: 'none',
-	  marker: {
-		color: 'rgba(255,144,17,.5)',
-		line: {
-		  color: 'rgb(8,48,107)',
-		  width: 1.5
-		}
-	  }
-	};
-	var config = { responsive: true };
-	var data = [];
-	if (yValues_state_targ != null) {
-		data = [trace_state_perf, trace_state_targ, trace_mpo_perf, config];
-	} else {
-		data = [trace_state_perf, trace_mpo_perf, config];
-	}
-
 	alert('Exiting generate_roadway_safety_viz');
 } // generate_roadway_safety_viz
 	
