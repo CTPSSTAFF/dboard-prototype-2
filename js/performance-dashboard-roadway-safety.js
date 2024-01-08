@@ -37,9 +37,7 @@ var rs_mpo_RowConverter = function(d) {
 };
 
 
-function generate_roadway_safety_viz(xValues, yValues_state_perf, yValues_state_targ, yValues_mpo_perf, canvas_id, title) {
-	var ctx = document.getElementById(canvas_id);
-	
+function generate_roadway_safety_viz(xValues, yValues_state_perf, yValues_state_targ, yValues_mpo_perf, canvas_id, chart_title, xAxis_label, yAxis_label) {
 	var state_perf_dataset = { 	label: 'Performance (State)',
 								backgroundColor: 'rgba(58,200,225,.75)',
 								borderWidth: 1.5,
@@ -59,7 +57,7 @@ function generate_roadway_safety_viz(xValues, yValues_state_perf, yValues_state_
 								data: yValues_mpo_perf
 							};
 							
-	// Note: Handle case that some viz's not having state target data
+	// Note: Handle case that some viz's do not have state target data
 	var aDatasets = [];
 	if (yValues_state_targ != null) {
 		aDatasets = [ state_perf_dataset, state_targ_dataset, mpo_perf_dataset ];
@@ -67,11 +65,23 @@ function generate_roadway_safety_viz(xValues, yValues_state_perf, yValues_state_
 		aDatasets = [ state_perf_dataset, mpo_perf_dataset ];
 	}
 	
+	var ctx = document.getElementById(canvas_id);
 	var cfg = {
 		type: 'bar',
 		data: {
 			datasets: aDatasets,
 			labels: xValues
+		},
+		options: {
+			plugins: {
+				title: { display: true,
+				         text: chart_title 
+				}
+			},
+			scales: {
+				x: { title: { display: true,  text: xAxis_label } },
+				y: { title: { display: true,  text: yAxis_label } }
+			}
 		}
 	}
 	new Chart(ctx, cfg);
@@ -83,11 +93,14 @@ function roadway_safety_viz(rs_state_data, rs_mpo_data) {
 	var xValues = [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022];
 	var yValues_state_perf = [], yValues_state_targ = [], yValues_mpo_perf = [];
 	var canvas_id = '';
+	var xAxis_label = 'Year';
+	var yAxis_label = '';
 	var title = '';
 	
 	// Roadway fatalities: 5-year rolling average
 	canvas_id = 'roadway-fatalities-5-yr-viz';
 	title = 'Roadway Fatalities - 5-year Rolling Average';
+	yAxis_label = 'Roadway Fatalities - 5-year Rolling Average';
 	
 	var road_fat_state = _.find(rs_state_data, function(o) { return o.perf_meas == 'Fatalities_5 year rolling average'; });     
 	var road_fat_mpo   = _.find(rs_mpo_data, function(o) { return o.perf_meas == 'Fatalities_5 year rolling average'; });
@@ -98,7 +111,10 @@ function roadway_safety_viz(rs_state_data, rs_mpo_data) {
 	yValues_mpo_perf = [ road_fat_mpo.perf_2013, road_fat_mpo.perf_2014, road_fat_mpo.perf_2015, road_fat_mpo.perf_2016,road_fat_mpo.perf_2017, 
 						 road_fat_mpo.perf_2018, road_fat_mpo.perf_2019, road_fat_mpo.perf_2020, road_fat_mpo.perf_2021, road_fat_mpo.perf_2022 ];	
 				
-	generate_roadway_safety_viz(xValues, yValues_state_perf, yValues_state_targ, yValues_mpo_perf, canvas_id, title);
+	generate_roadway_safety_viz(xValues, yValues_state_perf, yValues_state_targ, yValues_mpo_perf, canvas_id, title, xAxis_label, yAxis_label);
+	
+	
+	return; // for now
 	
 	
 	// Fatalities - 1 year
