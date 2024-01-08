@@ -33,13 +33,9 @@
 /* End of rules for CTPS "branding" */
 
 
-/* In case we use jQueryUI, the following overrides jQueryUI ui-widget class size of "1.2em" */
-/* 
-.ui-widget {
-	font-size: 12px;
+.container {
 }
-*/
 
-
-#container {
+h4.subsection_heading {
+	font-weight: bold;
 }
