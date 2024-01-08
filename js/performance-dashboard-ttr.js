@@ -2,8 +2,8 @@
 var ttr_state_RowConverter = function(d) {
 	return {
 		perf_meas:		d['Performance Measure'],
-		targ_2025:		+d['Four-Year Target (2025)'],
-		targ_2023:		+d['Two-Year Target (2023)'],
+		targ_2025:		+d['Four Year Target (2025)'],
+		targ_2023:		+d['Two Year Target (2023)'],
 		targ_2021:		+d['2021 Target'],
 		targ_2019:		+d['2019 Target'],
 		perf_2021:		+d['2021 Performance'],
@@ -27,223 +27,89 @@ var ttr_mpo_RowConverter = function(d) {
 };
 
 
-function interstate_ttr_viz(xValues, yValues_targ, yValues_perf_state, yValues_perf_mpo) {
-	var trace_targ = { 
-	  x: xValues,
-	  y: yValues_targ,
-	  type: 'bar',
-	  name: 'Target',
-	  text: yValues_targ.map(String),
-	  textposition: 'auto',
-	  hoverinfo: 'none',
-	  opacity: 0.5,
-	  marker: {
-		color: 'rgb(158,202,225)',
-		line: {
-		  color: 'rgb(8,48,107)',
-		  width: 1.5
+function generate_ttr_viz(xValues, yValues_state_targ, yValues_state_perf, yValues_mpo_perf, canvas_id, chart_title, xAxis_label, yAxis_label) {
+	// Generate a line chart for TTR data
+	var state_perf_dataset = { 	label: 'Performance (State)',
+								backgroundColor: 'rgba(58,200,225,.75)',
+								borderWidth: 1.5,
+								borderColor:  'rgb(8,48,107)',
+								data: yValues_state_perf
+						};
+	var state_targ_dataset = { 	label: 'Target (State)',
+								backgroundColor: 'rgb(00,204,107,.75)',
+								borderWidth: 1.5,
+								borderColor: 'rgb(8,48,107)',
+								data: yValues_state_targ
+							};
+	var mpo_perf_dataset = 	{ 	label: 'Performance (MPO)',
+								backgroundColor: 'rgba(255,144,17,.75)',
+								borderWidth: 1.5,
+								borderColor: 'rgb(8,48,107)',
+								data: yValues_mpo_perf
+							};
+							
+	// Note: Handle case that some viz's do not have state target data
+	var aDatasets = [];
+	if (yValues_state_targ != null) {
+		aDatasets = [ state_perf_dataset, state_targ_dataset, mpo_perf_dataset ];
+	} else {
+		aDatasets = [ state_perf_dataset, mpo_perf_dataset ];
+	}
+	
+	var ctx = document.getElementById(canvas_id);
+	var cfg = {
+		type: 'bar',
+		data: {
+			datasets: aDatasets,
+			labels: xValues
+		},
+		options: {
+			plugins: {
+				title: { display: true,
+				         text: chart_title 
+				}
+			},
+			scales: {
+				x: { title: { display: true,  text: xAxis_label } },
+				y: { title: { display: true,  text: yAxis_label } }
+			}
 		}
-	  }
-	};	
-	
-	var trace_perf_state = {
-	  x: xValues,
-	  y: yValues_perf_state,
-	  type: 'bar',
-	  name: 'Performance - statewide',
-	  text: yValues_perf_state.map(String),
-	  textposition: 'auto',
-	  hoverinfo: 'none',
-	  marker: {
-		color: 'rgba(58,200,225,.5)',
-		line: {
-		  color: 'rgb(8,48,107)',
-		  width: 1.5
-		}
-	  }
-	};	
-	
-	var trace_perf_mpo = {
-	  x: xValues,
-	  y: yValues_perf_mpo,
-	  type: 'bar',
-	  name: 'Performance - Boston Region MPO',
-	  text: yValues_perf_mpo.map(String),
-	  textposition: 'auto',
-	  hoverinfo: 'none',
-	  marker: {
-		color: 'rgba(255,144,17,.5)',
-		line: {
-		  color: 'rgb(8,48,107)',
-		  width: 1.5
-		}
-	  }
-	};
-	
-	
-	var data = [trace_targ, trace_perf_state, trace_perf_mpo];
+	}
+	new Chart(ctx, cfg);
+} // generate_ttr_viz
 
-	var layout = {
-		xaxis: { type: 'category' },
-		title: 'Percent of person-miles traveled on the Interstate System that are reliable'
-	};
-
-	Plotly.newPlot('ttr-interstate-viz', data, layout);
-	
-} // interstate_ttr_viz
-
-function non_interstate_ttr_viz(xValues, yValues_targ, yValues_perf_state, yValues_perf_mpo) {
-	var trace_targ = { 
-	  x: xValues,
-	  y: yValues_targ,
-	  type: 'bar',
-	  name: 'Target',
-	  text: yValues_targ.map(String),
-	  textposition: 'auto',
-	  hoverinfo: 'none',
-	  opacity: 0.5,
-	  marker: {
-		color: 'rgb(158,202,225)',
-		line: {
-		  color: 'rgb(8,48,107)',
-		  width: 1.5
-		}
-	  }
-	};	
-	
-	var trace_perf_state = {
-	  x: xValues,
-	  y: yValues_perf_state,
-	  type: 'bar',
-	  name: 'Performance - statewide',
-	  text: yValues_perf_state.map(String),
-	  textposition: 'auto',
-	  hoverinfo: 'none',
-	  marker: {
-		color: 'rgba(58,200,225,.5)',
-		line: {
-		  color: 'rgb(8,48,107)',
-		  width: 1.5
-		}
-	  }
-	};	
-	
-	var trace_perf_mpo = {
-	  x: xValues,
-	  y: yValues_perf_mpo,
-	  type: 'bar',
-	  name: 'Performance - Boston Region MPO',
-	  text: yValues_perf_mpo.map(String),
-	  textposition: 'auto',
-	  hoverinfo: 'none',
-	  marker: {
-		color: 'rgba(255,144,17,.5)',
-		line: {
-		  color: 'rgb(8,48,107)',
-		  width: 1.5
-		}
-	  }
-	};
-	
-	
-	var data = [trace_targ, trace_perf_state, trace_perf_mpo];
-
-	var layout = {
-		xaxis: { type: 'category' },
-		title: 'Percent of person-miles traveled on the non-Interstate NHS System that are reliable'
-	};
-
-	Plotly.newPlot('ttr-noninterstate-viz', data, layout);
-} // non_interstate_ttr_viz
-
-function truck_ttr_viz(xValues, yValues_targ, yValues_perf_state, yValues_perf_mpo) {
-var trace_targ = { 
-	  x: xValues,
-	  y: yValues_targ,
-	  type: 'bar',
-	  name: 'Target',
-	  text: yValues_targ.map(String),
-	  textposition: 'auto',
-	  hoverinfo: 'none',
-	  opacity: 0.5,
-	  marker: {
-		color: 'rgb(158,202,225)',
-		line: {
-		  color: 'rgb(8,48,107)',
-		  width: 1.5
-		}
-	  }
-	};	
-	
-	var trace_perf_state = {
-	  x: xValues,
-	  y: yValues_perf_state,
-	  type: 'bar',
-	  name: 'Performance - statewide',
-	  text: yValues_perf_state.map(String),
-	  textposition: 'auto',
-	  hoverinfo: 'none',
-	  marker: {
-		color: 'rgba(58,200,225,.5)',
-		line: {
-		  color: 'rgb(8,48,107)',
-		  width: 1.5
-		}
-	  }
-	};	
-	
-	var trace_perf_mpo = {
-	  x: xValues,
-	  y: yValues_perf_mpo,
-	  type: 'bar',
-	  name: 'Performance - Boston Region MPO',
-	  text: yValues_perf_mpo.map(String),
-	  textposition: 'auto',
-	  hoverinfo: 'none',
-	  marker: {
-		color: 'rgba(255,144,17,.5)',
-		line: {
-		  color: 'rgb(8,48,107)',
-		  width: 1.5
-		}
-	  }
-	};
-	
-	
-	var data = [trace_targ, trace_perf_state, trace_perf_mpo];
-
-	var layout = {
-		xaxis: { type: 'category' },
-		title: 'Truck Travel-time Reliability Index (Interstates only)'
-	};
-
-	Plotly.newPlot('ttr-truck-viz', data, layout);
-} // truck_ttr_viz
 
 function ttr_viz(ttr_state_data, ttr_mpo_data) {
-	
 	console.log('Entered ttr_viz');
+	
+	var xValues = [ 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 ];;
+	var yValues_state_perf = [], yValues_state_targ = [], yValues_mpo_perf = [];
+	var canvas_id = '';
+	var title = '';
+	var xAxis_label = 'Year';
+	var yAxis_label = '';
+	
+
+	// Interstate TTR - all vehicles 
+	canvas_id = 'ttr-interstate-viz';
+	title = 'Percent of Person-miles on the Interstate System That Are Reliable';
+	yAxis_label = 'Percent of Person-miles Reliable';
+	
+	var interstate_ttr_state = _.find(ttr_state_data, function(o) { return o.perf_meas == 'Percent of the person miles traveled on the Interstate System that are reliable_Statewide'; });
+	var interstate_ttr_mpo = _.find(ttr_mpo_data, function(o) { return o.perf_meas == 'Percent of the person miles traveled on the Interstate System that are reliable_Boston Region'; });
+	
+	yValues_state_targ = [ null, null, interstate_ttr_state.targ_2019, null, interstate_ttr_state.targ_2021, null, interstate_ttr_state.targ_2023, null, interstate_ttr_state.targ_2025 ];
+	yValues_state_perf = [ interstate_ttr_state.perf_2017, interstate_ttr_state.perf_2018, interstate_ttr_state.perf_2019, interstate_ttr_state.perf_2020, 
+	                       interstate_ttr_state.perf_2021, null, null, null, null ];
+	yValues_mpo_perf = [ interstate_ttr_mpo.perf_2017, interstate_ttr_mpo.perf_2018, interstate_ttr_mpo.perf_2019, interstate_ttr_mpo.perf_2020, 
+                         interstate_ttr_mpo.perf_2021, null, null, null, null ];
+	
+	
+	generate_ttr_viz(xValues, yValues_state_targ, yValues_state_perf, yValues_mpo_perf, canvas_id, title, xAxis_label, yAxis_label);
+	
 	return; // for now
 	
-	// Generate a line chart for the TTR data
 	
-	
-	
-	var xValues = [ '2025' , '2023', '2021', '2019' ];
-	var yValues_targ = [], yValues_perf_state, yValues_perf_mpo = [];
-	
-	// Interstate TTR - all vehicles 
-	
-	// 3 sets of Y values for TTR: target, performance statewide, performance in the MPO area.
-	// Note that the 'statewide' record has targets for 2025, 2023, 2021 and 2019, and performance data for 2021 and 2019;
-	// the 'MPO' record only has performance data for 2021 and 2019.
-	var interstate_ttr_state = _.find(ttr_data, function(o) { return o.perf_meas == 'Percent of the person-miles traveled on the Interstate System that are reliable - Statewide'; });
-	var interstate_ttr_mpo = _.find(ttr_data, function(o) { return o.perf_meas == 'Percent of the person-miles traveled on the Interstate System that are reliable - Boston Region'; });
-	
-	yValues_targ = [ interstate_ttr_state.targ_2025, interstate_ttr_state.targ_2023, interstate_ttr_state.targ_2021, interstate_ttr_state.targ_2019 ];
-	yValues_perf_state = [ 0, 0, interstate_ttr_state.perf_2021, interstate_ttr_state.perf_2019 ];
-	yValues_perf_mpo = [ 0, 0, interstate_ttr_mpo.perf_2021, interstate_ttr_mpo.perf_2019 ];
-	interstate_ttr_viz(xValues, yValues_targ, yValues_perf_state, yValues_perf_mpo);
 	
 	// Non-interstate (NHS) TTR - all vehicles
 	var non_interstate_ttr_state = _.find(ttr_data, function(o) { return o.perf_meas == 'Percent of the person-miles traveled on the non-Interstate NHS that are reliable - Statewide'; });
