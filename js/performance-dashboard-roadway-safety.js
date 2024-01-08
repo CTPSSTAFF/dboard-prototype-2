@@ -42,17 +42,20 @@ function generate_roadway_safety_viz(xValues, yValues_state_perf, yValues_state_
 	
 	var state_perf_dataset = { 	label: 'Performance (State)',
 								backgroundColor: 'rgba(58,200,225,.75)',
-								borderColor:  'rgb(8,48,107)',			// SETTING 'borderColor' DOESN'T SEEM TO WORK
+								borderWidth: 1.5,
+								borderColor:  'rgb(8,48,107)',
 								data: yValues_state_perf
 						};
 	var state_targ_dataset = { 	label: 'Target (State)',
 								backgroundColor: 'rgb(00,204,107,.75)',
-								borderColor: 'rgb(8,48,107)',			// SETTING 'borderColor' DOESN'T SEEM TO WORK
+								borderWidth: 1.5,
+								borderColor: 'rgb(8,48,107)',
 								data: yValues_state_targ
 							};
 	var mpo_perf_dataset = 	{ 	label: 'Performance (MPO)',
 								backgroundColor: 'rgba(255,144,17,.75)',
-								borderColor: 'rgb(8,48,107)',			// SETTING 'borderColor' DOESN'T SEEM TO WORK
+								borderWidth: 1.5,
+								borderColor: 'rgb(8,48,107)',
 								data: yValues_mpo_perf
 							};
 							
