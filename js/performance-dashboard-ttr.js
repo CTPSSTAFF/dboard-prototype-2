@@ -104,21 +104,31 @@ function ttr_viz(ttr_state_data, ttr_mpo_data) {
 	yValues_mpo_perf = [ interstate_ttr_mpo.perf_2017, interstate_ttr_mpo.perf_2018, interstate_ttr_mpo.perf_2019, interstate_ttr_mpo.perf_2020, 
                          interstate_ttr_mpo.perf_2021, null, null, null, null ];
 	
-	
 	generate_ttr_viz(xValues, yValues_state_targ, yValues_state_perf, yValues_mpo_perf, canvas_id, title, xAxis_label, yAxis_label);
 	
-	return; // for now
-	
+
 	
 	
 	// Non-interstate (NHS) TTR - all vehicles
-	var non_interstate_ttr_state = _.find(ttr_data, function(o) { return o.perf_meas == 'Percent of the person-miles traveled on the non-Interstate NHS that are reliable - Statewide'; });
-	var non_interstate_ttr_mpo = _.find(ttr_data, function(o) { return o.perf_meas == 'Percent of the person-miles traveled on the non-Interstate NHS that are reliable - Boston Region'; });
+	canvas_id = 'ttr-noninterstate-viz';
+	title = 'Percent of Person-miles on the Non-Interstate NHS That Are Reliable';
+	yAxis_label = 'Percent of Person-miles Reliable';
 	
-	yValues_targ = [ non_interstate_ttr_state.targ_2025, non_interstate_ttr_state.targ_2023, non_interstate_ttr_state.targ_2021, non_interstate_ttr_state.targ_2019 ];
-	yValues_perf_state = [ 0, 0, non_interstate_ttr_state.perf_2021, non_interstate_ttr_state.perf_2019 ];
-	yValues_perf_mpo = [ 0, 0, non_interstate_ttr_mpo.perf_2021, non_interstate_ttr_mpo.perf_2019 ];
-	non_interstate_ttr_viz(xValues, yValues_targ, yValues_perf_state, yValues_perf_mpo);
+	var noninterstate_ttr_state = _.find(ttr_state_data, function(o) { return o.perf_meas == 'Percent of the person miles traveled on the non Interstate NHS that are reliable_Statewide'; });
+	var noninterstate_ttr_mpo = _.find(ttr_mpo_data, function(o) { return o.perf_meas == 'Percent of the person miles traveled on the non Interstate NHS that are reliable_Boston Region'; });
+	
+	yValues_state_targ = [ null, null, noninterstate_ttr_state.targ_2019, null, noninterstate_ttr_state.targ_2021, null, 
+	                       noninterstate_ttr_state.targ_2023, null, noninterstate_ttr_state.targ_2025 ];
+	yValues_state_perf = [ noninterstate_ttr_state.perf_2017, noninterstate_ttr_state.perf_2018, noninterstate_ttr_state.perf_2019, noninterstate_ttr_state.perf_2020, 
+	                       noninterstate_ttr_state.perf_2021, null, null, null, null ];
+	yValues_mpo_perf = [ noninterstate_ttr_mpo.perf_2017, noninterstate_ttr_mpo.perf_2018,noninterstate_ttr_mpo.perf_2019, noninterstate_ttr_mpo.perf_2020, 
+                         noninterstate_ttr_mpo.perf_2021, null, null, null, null ];
+	
+	generate_ttr_viz(xValues, yValues_state_targ, yValues_state_perf, yValues_mpo_perf, canvas_id, title, xAxis_label, yAxis_label);
+
+	return; // for now
+	
+	
 	
 	// Truck TTR
 	var truck_ttr_state = _.find(ttr_data, function(o) { return o.perf_meas == 'Truck Travel Time Reliability Index (for truck travel on Interstate highways) - Statewide'; });
