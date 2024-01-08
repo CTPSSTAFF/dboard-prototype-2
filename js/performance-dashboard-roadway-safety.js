@@ -41,17 +41,17 @@ function generate_roadway_safety_viz(xValues, yValues_state_perf, yValues_state_
 	var ctx = document.getElementById(canvas_id);
 	
 	var state_perf_dataset = { 	label: 'Performance (State)',
-								backgroundColor: 'rgba(58,200,225,.5)',
+								backgroundColor: 'rgba(58,200,225,.75)',
 								borderColor:  'rgb(8,48,107)',			// SETTING 'borderColor' DOESN'T SEEM TO WORK
 								data: yValues_state_perf
 						};
 	var state_targ_dataset = { 	label: 'Target (State)',
-								backgroundColor: 'rgb(206,228,240)',
+								backgroundColor: 'rgb(00,204,107,.75)',
 								borderColor: 'rgb(8,48,107)',			// SETTING 'borderColor' DOESN'T SEEM TO WORK
 								data: yValues_state_targ
 							};
 	var mpo_perf_dataset = 	{ 	label: 'Performance (MPO)',
-								backgroundColor: 'rgba(255,144,17,.5)',
+								backgroundColor: 'rgba(255,144,17,.75)',
 								borderColor: 'rgb(8,48,107)',			// SETTING 'borderColor' DOESN'T SEEM TO WORK
 								data: yValues_mpo_perf
 							};
