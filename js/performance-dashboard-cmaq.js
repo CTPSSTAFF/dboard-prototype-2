@@ -16,157 +16,20 @@ var cmaq_mpo_RowConverter = function(d) {
 	return temp;
 };
 
-function percent_non_sov_viz(xValues, yValues_targ, yValues_perf, yValues_baseline) {
-	var trace_targ = { 
-	  x: xValues,
-	  y: yValues_targ,
-	  type: 'bar',
-	  name: 'Target',
-	  text: yValues_targ.map(String),
-	  textposition: 'auto',
-	  hoverinfo: 'none',
-	  opacity: 0.5,
-	  marker: {
-		color: 'rgb(158,202,225)',
-		line: {
-		  color: 'rgb(8,48,107)',
-		  width: 1.5
-		}
-	  }
-	};	
+
+function generate_cmaq_viz(xValues, yValues_state_targ, yValues_state_perf, yValues_mpo_perf, canvas_id, chart_title, xAxis_label, yAxis_label) {
 	
-	var trace_perf = {
-	  x: xValues,
-	  y: yValues_perf,
-	  type: 'bar',
-	  name: 'Performance',
-	  text: yValues_perf.map(String),
-	  textposition: 'auto',
-	  hoverinfo: 'none',
-	  marker: {
-		color: 'rgba(58,200,225,.5)',
-		line: {
-		  color: 'rgb(8,48,107)',
-		  width: 1.5
-		}
-	  }
-	};	
-	
-	var data = [trace_perf,trace_targ];
+	return; // for now
 
-	var layout = {
-		xaxis: { type: 'category' },
-		title: 'Percentage of non-SOV Travel'
-	};
+} // generate_cmaq_viz
 
-	Plotly.newPlot('percent-non-sov-viz', data, layout);	
-}
-
-
-function phed_viz(xValues, yValues_targ, yValues_perf, yValues_baseline) {
-	var trace_targ = { 
-	  x: xValues,
-	  y: yValues_targ,
-	  type: 'bar',
-	  name: 'Target',
-	  text: yValues_targ.map(String),
-	  textposition: 'auto',
-	  hoverinfo: 'none',
-	  opacity: 0.5,
-	  marker: {
-		color: 'rgb(158,202,225)',
-		line: {
-		  color: 'rgb(8,48,107)',
-		  width: 1.5
-		}
-	  }
-	};	
-	
-	var trace_perf = {
-	  x: xValues,
-	  y: yValues_perf,
-	  type: 'bar',
-	  name: 'Performance',
-	  text: yValues_perf.map(String),
-	  textposition: 'auto',
-	  hoverinfo: 'none',
-	  marker: {
-		color: 'rgba(58,200,225,.5)',
-		line: {
-		  color: 'rgb(8,48,107)',
-		  width: 1.5
-		}
-	  }
-	};	
-	
-	var data = [trace_perf,trace_targ];
-
-	var layout = {
-		xaxis: { type: 'category' },
-		title: 'Annual Hours of Peak Hour Excessive Delay'
-	};
-
-	Plotly.newPlot('phed-viz', data, layout);	
-}	
-
-
-
-function emissions_reduction_viz(xValues, yValues_targ, yValues_perf, yValues_baseline) {
-	var trace_targ = { 
-	  x: xValues,
-	  y: yValues_targ,
-	  type: 'bar',
-	  name: 'Target',
-	  text: yValues_targ.map(String),
-	  textposition: 'auto',
-	  hoverinfo: 'none',
-	  opacity: 0.5,
-	  marker: {
-		color: 'rgb(158,202,225)',
-		line: {
-		  color: 'rgb(8,48,107)',
-		  width: 1.5
-		}
-	  }
-	};	
-	
-	var trace_perf = {
-	  x: xValues,
-	  y: yValues_perf,
-	  type: 'bar',
-	  name: 'Performance',
-	  text: yValues_perf.map(String),
-	  textposition: 'auto',
-	  hoverinfo: 'none',
-	  marker: {
-		color: 'rgba(58,200,225,.5)',
-		line: {
-		  color: 'rgb(8,48,107)',
-		  width: 1.5
-		}
-	  }
-	};	
-	
-	var data = [trace_perf,trace_targ];
-
-	var layout = {
-		xaxis: { type: 'category' },
-		title: 'Total Emissions Reduction'
-	};
-
-	Plotly.newPlot('emissions-reductions-viz', data, layout);
-	
-}
 
 
 function cmaq_viz(cmaq_mpo_data) {
-	
 	console.log('Entered cmaq_viz');
 	return; // for now
 	
 	// Generate a line chart for the CMAQ data
-	
-	
 	
 	var xValues = ['2025', '2023', '2021', '2019'];
 	var yValues_targ = [], yValues_perf = [], yValues_baseline = [];
@@ -176,7 +39,7 @@ function cmaq_viz(cmaq_mpo_data) {
 	yValues_targ = [ non_sov.targ_2025, non_sov.targ_2023, non_sov.targ_2021, non_sov.targ_2019 ];
 	yValues_perf = [ 0, 0, non_sov.perf_2021, non_sov.perf_2019 ];
 	yValues_baseline = [];
-	percent_non_sov_viz(xValues, yValues_targ, yValues_perf, yValues_baseline);
+	// generate_cmaq_viz(xValues, yValues_targ, yValues_perf, yValues_baseline);
 	
 	
 	// Hours of peak hour excessive delay
@@ -184,7 +47,7 @@ function cmaq_viz(cmaq_mpo_data) {
 	yValues_targ =  [ phed.targ_2025, phed.targ_2023, phed.targ_2021, phed.targ_2019 ];
 	yValues_perf = [ 0, 0, phed.perf_2021, phed.perf_2019 ];
 	yValues_baseline = [];
-	phed_viz(xValues, yValues_targ, yValues_perf, yValues_baseline);
+	// generate_cmaq_viz(xValues, yValues_targ, yValues_perf, yValues_baseline);
 
 	
 	// Total emissions reductions for applicable pollutants...
@@ -193,8 +56,6 @@ function cmaq_viz(cmaq_mpo_data) {
 	
 	yValues_targ =  [emissions.targ_2025, emissions.targ_2023, emissions.targ_2021, emissions.targ_2019 ];
 	yValues_perf = [ 0, 0, emissions.perf_2021, emissions.perf_2019 ];
-	yValues_baseline = [];
-	emissions_reduction_viz(xValues, yValues_targ, yValues_perf, yValues_baseline);
-	
+	// generate_cmaq_viz(xValues, yValues_targ, yValues_perf, yValues_baseline);
 } // cmaq_viz
 
