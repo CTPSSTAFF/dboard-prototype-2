@@ -1,5 +1,6 @@
 # dboard-prototype-2
-Prototype #2 of 'Performance Dashboard'.
+Prototype #2 of 'Performance Dashboard'.  
+This version uses the __chart.js__ library to generate data visualizations.
 
 ## Software Dependencies
 * bootstrap - for layout
@@ -19,4 +20,4 @@ Bar charts:
 Line charts:
 * Bridge and pavement condition
 * TTR
-* CMAQ
+* CMAQ - implemented in current version
