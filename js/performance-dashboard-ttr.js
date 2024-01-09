@@ -33,18 +33,21 @@ function generate_ttr_viz(xValues, yValues_state_targ, yValues_state_perf, yValu
 								backgroundColor: 'rgba(58,200,225,.75)',
 								borderWidth: 1.5,
 								borderColor:  'rgb(8,48,107)',
+								spanGaps: true,
 								data: yValues_state_perf
 						};
 	var state_targ_dataset = { 	label: 'Target (State)',
 								backgroundColor: 'rgb(00,204,107,.75)',
 								borderWidth: 1.5,
 								borderColor: 'rgb(8,48,107)',
+								spanGaps: true,
 								data: yValues_state_targ
 							};
 	var mpo_perf_dataset = 	{ 	label: 'Performance (MPO)',
 								backgroundColor: 'rgba(255,144,17,.75)',
 								borderWidth: 1.5,
 								borderColor: 'rgb(8,48,107)',
+								spanGaps: true,
 								data: yValues_mpo_perf
 							};
 							
@@ -58,7 +61,7 @@ function generate_ttr_viz(xValues, yValues_state_targ, yValues_state_perf, yValu
 	
 	var ctx = document.getElementById(canvas_id);
 	var cfg = {
-		type: 'bar',
+		type: 'line',
 		data: {
 			datasets: aDatasets,
 			labels: xValues
@@ -89,7 +92,6 @@ function ttr_viz(ttr_state_data, ttr_mpo_data) {
 	var xAxis_label = 'Year';
 	var yAxis_label = '';
 	
-
 	// Interstate TTR - all vehicles 
 	canvas_id = 'ttr-interstate-viz';
 	title = 'Percent of Person-miles on the Interstate System That Are Reliable';
