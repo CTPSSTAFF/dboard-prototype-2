@@ -107,8 +107,6 @@ function ttr_viz(ttr_state_data, ttr_mpo_data) {
 	generate_ttr_viz(xValues, yValues_state_targ, yValues_state_perf, yValues_mpo_perf, canvas_id, title, xAxis_label, yAxis_label);
 	
 
-	
-	
 	// Non-interstate (NHS) TTR - all vehicles
 	canvas_id = 'ttr-noninterstate-viz';
 	title = 'Percent of Person-miles on the Non-Interstate NHS That Are Reliable';
@@ -121,20 +119,27 @@ function ttr_viz(ttr_state_data, ttr_mpo_data) {
 	                       noninterstate_ttr_state.targ_2023, null, noninterstate_ttr_state.targ_2025 ];
 	yValues_state_perf = [ noninterstate_ttr_state.perf_2017, noninterstate_ttr_state.perf_2018, noninterstate_ttr_state.perf_2019, noninterstate_ttr_state.perf_2020, 
 	                       noninterstate_ttr_state.perf_2021, null, null, null, null ];
-	yValues_mpo_perf = [ noninterstate_ttr_mpo.perf_2017, noninterstate_ttr_mpo.perf_2018,noninterstate_ttr_mpo.perf_2019, noninterstate_ttr_mpo.perf_2020, 
+	yValues_mpo_perf = [ noninterstate_ttr_mpo.perf_2017, noninterstate_ttr_mpo.perf_2018, noninterstate_ttr_mpo.perf_2019, noninterstate_ttr_mpo.perf_2020, 
                          noninterstate_ttr_mpo.perf_2021, null, null, null, null ];
 	
 	generate_ttr_viz(xValues, yValues_state_targ, yValues_state_perf, yValues_mpo_perf, canvas_id, title, xAxis_label, yAxis_label);
 
-	return; // for now
-	
-	
-	
+
 	// Truck TTR
-	var truck_ttr_state = _.find(ttr_data, function(o) { return o.perf_meas == 'Truck Travel Time Reliability Index (for truck travel on Interstate highways) - Statewide'; });
-	var truck_ttr_mpo = _.find(ttr_data, function(o) { return o.perf_meas == 'Truck Travel Time Reliability Index (for truck travel on Interstate highways) - Boston Region'; });
-	yValues_targ = [ truck_ttr_state.targ_2025, truck_ttr_state.targ_2023, truck_ttr_state.targ_2021, truck_ttr_state.targ_2019 ];
-	yValues_perf_state = [ 0, 0, truck_ttr_state.perf_2021, truck_ttr_state.perf_2019 ];
-	yValues_perf_mpo = [ 0, 0, truck_ttr_mpo.perf_2021, truck_ttr_mpo.perf_2019 ];
-	truck_ttr_viz(xValues, yValues_targ, yValues_perf_state, yValues_perf_mpo);
+	canvas_id = 'ttr-truck-viz';
+	title = 'Truck Travel Time Reliability (Interstates only)';
+	yAxis_label = 'Travel Time Reliability Index';
+	
+	var truck_ttr_state = _.find(ttr_state_data, function(o) { return o.perf_meas == 'Truck Travel Time Reliability Index (for truck travel on Interstate highways)_Statewide'; });
+	var truck_ttr_mpo = _.find(ttr_mpo_data, function(o) { return o.perf_meas == 'Truck Travel Time Reliability Index (for truck travel on Interstate highways)_Boston Region'; });
+	
+	
+	yValues_state_targ = [ null, null, truck_ttr_state.targ_2019, null, truck_ttr_state.targ_2021, null, 
+	                       truck_ttr_state.targ_2023, null, truck_ttr_state.targ_2025 ];
+	yValues_state_perf = [ truck_ttr_state.perf_2017, truck_ttr_state.perf_2018, truck_ttr_state.perf_2019, truck_ttr_state.perf_2020, 
+	                       truck_ttr_state.perf_2021, null, null, null, null ];
+	yValues_mpo_perf = [ truck_ttr_mpo.perf_2017, truck_ttr_mpo.perf_2018, truck_ttr_mpo.perf_2019, truck_ttr_mpo.perf_2020, 
+                         truck_ttr_mpo.perf_2021, null, null, null, null ];
+						 
+	generate_ttr_viz(xValues, yValues_state_targ, yValues_state_perf, yValues_mpo_perf, canvas_id, title, xAxis_label, yAxis_label);
 } // ttr_viz
