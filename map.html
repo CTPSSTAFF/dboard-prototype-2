@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+        <title>Chart.js - Test #1</title>
+		
+		<!-- Stuff for Bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		
+		<!-- CSS specific to this app -->
+        <link rel="stylesheet" href="css/performance-dashboard.css" type="text/css">  
+		
+		<!-- JS for the lodash library -->
+		<script src="libs/lodash.js"></script>
+		
+		<!-- JS for the d3 library -->
+		<script src="libs/d3.v7.8.5.min.js"></script>
+		
+		<!-- JS for the Chart.js library -->
+		<script src="libs/chart-4.4.1.js"></script>
+		
+		<!-- Stuff for Google Analytics -->
+        <script>
+        (function(i,s,o,g,r,a,m){
+            i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();
+            a=s.createElement(o),m=s.getElementsByTagName(o)[0];
+            a.async=1;
+            a.src=g;
+            m.parentNode.insertBefore(a,m)})(window,
+                                             document,
+                                             "script",
+                                             "https://www.google-analytics.com/analytics.js",
+                                             "ga");
+            ga("create", "UA-39489988-1", {"cookieDomain":"auto"});
+            ga("set", "anonymizeIp", true);
+            ga("send", "pageview");
+        </script>
+    </head>
+    <body>   
+        <div class="ctpsHeader">
+            <div class="lightBlue"></div>
+            <div class="darkBlue"></div>
+            <div id="banner">
+                <a href="https://www.ctps.org/" target="_blank" title="Boston MPO">
+                    <img style="height:59px" src="img/ctps_header.png" title="Opens Boston MPO website in a new window">
+                </a>
+            </div>
+        </div>
+
+		<div class="container">
+		
+			<ul class="nav nav-pills">
+			  <li class="active"><a data-toggle="pill" href="#home">Home</a></li>
+			  <li><a data-toggle="pill" href="#roadway-safety">Roadway Safety</a></li>
+			  <li><a data-toggle="pill" href="#transit-safety">Transit Safety</a></li>
+			  <li><a data-toggle="pill" href="#transit-asset-management">Transit Asset Management</a></li>
+			  <li><a data-toggle="pill" href="#bridge-and-pavement">Bridge and Pavement Condition</a></li>
+			  <li><a data-toggle="pill" href="#travel-time-reliability">Travel Time Reliability</a></li>
+			  <li><a data-toggle="pill" href="#cmaq">CMAQ</a></li>
+			</ul>
+
+			<div class="tab-content">
+			  <div id="home" class="tab-pane fade in active">
+				<h3>Home</h3>
+				<h4>Performance-based Planning and Programming</h4>
+			  </div>
+			  
+			  <div id="roadway-safety" class="tab-pane fade">
+				<h3>Roadway Safety</h3>
+
+	
+				<h4>Number of Fatalities - 5-Year Rolling Average</h4>
+				
+				<h4>Number of Fatalities - 1-Year Totals</h4>
+				
+				<h4>Fatality Rate (per 100M VMT)</h4>
+				
+				<h4>Number of Serious Injuries 5-Year Rolling Average</h4>
+				
+				<h4>Number of Serious Injuries 1-Year Totals</h4>			
+				
+				<h4>Serious Injury Rate (per 100M VMT)</h4>
+				
+				<h4>Number of Nonmotorized Fatalities and Serious Injuries</h4>
+				
+				<h4>Vehicle Miles Traveled</h4>
+				
+			  </div>
+			  
+			  <div id="transit-safety" class="tab-pane fade">
+			    <h3>Transit Safety</h3>
+
+			  </div> <!--transit-safety -->
+			  
+			  <div id="transit-asset-management" class="tab-pane fade">
+				<h3>Transit Asset Management</h3>
+
+			  </div> <!-- transit-asset-management -->
+			  
+			  <div id="bridge-and-pavement" class="tab-pane fade">
+				<h3>Bridge and Pavement Conditon</h3>
+				
+				<h4>Bridge Condition</h4>
+	
+				<h4>Pavement Condition</h4>
+
+			  </div> <!-- bridge-and-pavement -->
+			  
+			  <div id="travel-time-reliability" class="tab-pane fade">
+				<h3>Travel Time Reliability</h3>
+				
+				<div id="lottr_map">
+				</div>
+
+			
+			  </div> <!-- travel-time-reliability -->	
+			  
+		      <div id="cmaq" class="tab-pane fade">
+				<h3>CMAQ</h3>
+
+			  </div> <!-- cmaq -->
+			  
+			</div>
+			
+		</div> <!-- .container -->
+		
+		
+		<!-- The following file contains the JS code for the test -->
+		<script src="js/map.js"></script>  
+		
+        <script> 
+            $(document).ready(function() { initialize(); });
+        </script>
+		
+	</body>
+</html>
