@@ -32,21 +32,21 @@ function generate_ttr_viz(xValues, yValues_state_targ, yValues_state_perf, yValu
 	var state_perf_dataset = { 	label: 'Performance (State)',
 								backgroundColor: 'rgba(58,200,225,.75)',
 								borderWidth: 1.5,
-								borderColor:  'rgb(8,48,107)',
+								borderColor:  'rgb(58,200,255)',
 								spanGaps: true,
 								data: yValues_state_perf
 						};
 	var state_targ_dataset = { 	label: 'Target (State)',
-								backgroundColor: 'rgb(00,204,107,.75)',
+								backgroundColor: 'rgb(0,204,107,.75)',
 								borderWidth: 1.5,
-								borderColor: 'rgb(8,48,107)',
+								borderColor: 'rgb(0,204,107)',
 								spanGaps: true,
 								data: yValues_state_targ
 							};
 	var mpo_perf_dataset = 	{ 	label: 'Performance (MPO)',
 								backgroundColor: 'rgba(255,144,17,.75)',
 								borderWidth: 1.5,
-								borderColor: 'rgb(8,48,107)',
+								borderColor: 'rgb(255,144,17)',
 								spanGaps: true,
 								data: yValues_mpo_perf
 							};
