@@ -95,7 +95,7 @@ function ttr_viz(ttr_state_data, ttr_mpo_data) {
 	// Interstate TTR - all vehicles 
 	canvas_id = 'ttr-interstate-viz';
 	title = 'Percent of Person-miles on the Interstate System That Are Reliable';
-	yAxis_label = 'Percent of Person-miles Reliable';
+	yAxis_label = 'Percent of Person-miles That Are Reliable';
 	
 	var interstate_ttr_state = _.find(ttr_state_data, function(o) { return o.perf_meas == 'Percent of the person miles traveled on the Interstate System that are reliable_Statewide'; });
 	var interstate_ttr_mpo = _.find(ttr_mpo_data, function(o) { return o.perf_meas == 'Percent of the person miles traveled on the Interstate System that are reliable_Boston Region'; });
@@ -112,7 +112,7 @@ function ttr_viz(ttr_state_data, ttr_mpo_data) {
 	// Non-interstate (NHS) TTR - all vehicles
 	canvas_id = 'ttr-noninterstate-viz';
 	title = 'Percent of Person-miles on the Non-Interstate NHS That Are Reliable';
-	yAxis_label = 'Percent of Person-miles Reliable';
+	yAxis_label = 'Percent of Person-miles That Are Reliable';
 	
 	var noninterstate_ttr_state = _.find(ttr_state_data, function(o) { return o.perf_meas == 'Percent of the person miles traveled on the non Interstate NHS that are reliable_Statewide'; });
 	var noninterstate_ttr_mpo = _.find(ttr_mpo_data, function(o) { return o.perf_meas == 'Percent of the person miles traveled on the non Interstate NHS that are reliable_Boston Region'; });
