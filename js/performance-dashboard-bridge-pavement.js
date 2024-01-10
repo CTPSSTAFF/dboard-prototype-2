@@ -52,11 +52,11 @@ function generate_bridge_viz(xValues, yValues_state_good, yValues_state_poor, yV
 								data: yValues_mpo_poor
 							};							
 
-	var aDatasets = [ state_good_dataset ]; // , state_poor_dataset, mpo_good_dataset, mpo_poor_dataset ];
+	var aDatasets = [ state_good_dataset ]; // state_good_dataset, state_poor_dataset, mpo_good_dataset, mpo_poor_dataset ];
 	
 	var ctx = document.getElementById(canvas_id);
 	var cfg = {
-		type: 'line',
+		type: 'bar',
 		data: {
 			datasets: aDatasets,
 			labels: xValues
