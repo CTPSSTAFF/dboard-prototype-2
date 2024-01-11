@@ -18,10 +18,7 @@ var b_and_p_mpo_RowConverter = function(d) {
 
 
 function generate_bridge_viz(xValues, yValues_state_good, yValues_state_poor, yValues_mpo_good, yValues_mpo_poor,
-                             canvas_id, title, xAxis_label, yAxis_label) {
-								 
-	return; // for now
-	
+                             canvas_id, chart_title, xAxis_label, yAxis_label) {
 	// Generate a line chart for bridge condition data
 	var state_good_dataset = { 	label: 'Percent in Good Condition by Deck Area (State)',
 								backgroundColor: 'rgba(0,255,0,.75)',
@@ -50,9 +47,9 @@ function generate_bridge_viz(xValues, yValues_state_good, yValues_state_poor, yV
 								borderColor: 'rgb(8,48,107)',
 								spanGaps: true,
 								data: yValues_mpo_poor
-							};							
+							};	
 
-	var aDatasets = [ state_good_dataset ]; // state_good_dataset, state_poor_dataset, mpo_good_dataset, mpo_poor_dataset ];
+	var aDatasets = [ state_good_dataset, state_poor_dataset, mpo_good_dataset, mpo_poor_dataset ];
 	
 	var ctx = document.getElementById(canvas_id);
 	var cfg = {
@@ -72,7 +69,7 @@ function generate_bridge_viz(xValues, yValues_state_good, yValues_state_poor, yV
 				y: { title: { display: true,  text: yAxis_label } }
 			}
 		}
-	}
+	};
 	new Chart(ctx, cfg);	
 } // generate_bridge_viz
 
