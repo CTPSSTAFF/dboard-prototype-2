@@ -18,19 +18,50 @@ var cmaq_mpo_RowConverter = function(d) {
 
 
 function generate_cmaq_viz(xValues, yValues_targ, yValues_perf, canvas_id, chart_title, xAxis_label, yAxis_label) {
-	
-	
-	
-	return; // for now
+	// Generate a line chart for CMAQ data
+	var perf_dataset = { 	label: 'Performance (State)',
+							backgroundColor: 'rgba(58,200,225,.75)',
+							borderWidth: 1.5,
+							borderColor:  'rgb(58,200,255)',
+							spanGaps: true,
+							data: yValues_perf
+						};
+	var targ_dataset = { 	label: 'Target (State)',
+							backgroundColor: 'rgb(0,204,107,.75)',
+							borderWidth: 1.5,
+							borderColor: 'rgb(0,204,107)',
+							spanGaps: true,
+							data: yValues_targ
+							};
 
+	var aDatasets = [  perf_dataset, targ_dataset ];
+
+	var ctx = document.getElementById(canvas_id);
+	var cfg = {
+		type: 'line',
+		data: {
+			datasets: aDatasets,
+			labels: xValues
+		},
+		options: {
+			plugins: {
+				title: { display: true,
+				         text: chart_title 
+				}
+			},
+			scales: {
+				x: { title: { display: true,  text: xAxis_label } },
+				y: { title: { display: true,  text: yAxis_label } }
+			}
+		}
+	}
+	new Chart(ctx, cfg);
 } // generate_cmaq_viz
 
 
 
 function cmaq_viz(cmaq_mpo_data) {
 	console.log('Entered cmaq_viz');
-	
-	return; // for now
 	
 	var canvas_id = '';
 	var title = '';
@@ -48,7 +79,7 @@ function cmaq_viz(cmaq_mpo_data) {
 	var non_sov = _.find(cmaq_mpo_data, function(o) { return o.perf_meas == 'Percentage of non single occupant vehicle travel'; });
 	
 	yValues_perf = [ non_sov.perf_2017, non_sov.perf_2018, non_sov.perf_2019, non_sov.perf_2020, non_sov.perf_2021, null, null, null, null ];
-	yValue_targ = [ null, null, non_sov.targ_2019, null, null, null, non_sov.targ_2023, null, non_sov.targ_2025 ];
+	yValues_targ = [ null, null, non_sov.targ_2019, null, null, null, non_sov.targ_2023, null, non_sov.targ_2025 ];
 	
 	generate_cmaq_viz(xValues, yValues_targ, yValues_perf, canvas_id, title, xAxis_label, yAxis_label);
 
