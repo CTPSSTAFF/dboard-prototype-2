@@ -19,5 +19,5 @@ Bar charts:
 
 Line charts:
 * Bridge and pavement condition
-* TTR
+* TTR - implemented in current version
 * CMAQ - implemented in current version
