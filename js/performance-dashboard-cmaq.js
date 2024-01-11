@@ -83,7 +83,7 @@ function cmaq_viz(cmaq_mpo_data) {
 	
 	generate_cmaq_viz(xValues, yValues_targ, yValues_perf, canvas_id, title, xAxis_label, yAxis_label);
 
-	return; // for now
+
 	
 	
 	
@@ -93,7 +93,18 @@ function cmaq_viz(cmaq_mpo_data) {
 	xAxis_label = 'Year';
 	xAxis_label = 'Hours';
 	
-	generate_cmaq_viz(xValues, yValues_nonsov_targ, yValues_nonsov_perf, canvas_id, title, xAxis_label, yAxis_label);
+	var phed = _.find(cmaq_mpo_data, function(o) { return o.perf_meas == 'Annual hours of peak hour excessive delay per capita (for travel on NHS roadways)'; });
+	
+	yValues_perf = [ phed.perf_2017, phed.perf_2018, phed.perf_2019, phed.perf_2020, phed.perf_2021, null, null, null, null ];
+	yValues_targ = [ null, null, phed.targ_2019, null, null, null, phed.targ_2023, null, phed.targ_2025 ];
+	
+	
+	generate_cmaq_viz(xValues, yValues_targ, yValues_perf, canvas_id, title, xAxis_label, yAxis_label);
+	
+	
+	
+	
+	return; // for now
 	
 	
 	// Generate a line chart for emissions reductions
