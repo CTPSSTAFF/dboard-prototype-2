@@ -109,9 +109,9 @@ function generate_pavement_viz(xValues, yValues_state_good, yValues_state_poor, 
 	// Note that there are some metrics for which there is no MPO-specific data. Take this into account
 	var aDatasets = [];
 	if (yValues_mpo_good != null) {
-		var aDatasets = [ state_good_dataset, state_poor_dataset, mpo_good_dataset, mpo_poor_dataset ];
+		aDatasets = [ state_good_dataset, state_poor_dataset, mpo_good_dataset, mpo_poor_dataset ];
 	} else {
-		var aDatasets = [ state_good_dataset, state_poor_dataset ];
+		aDatasets = [ state_good_dataset, state_poor_dataset ];
 	}
 	
 	var ctx = document.getElementById(canvas_id);
