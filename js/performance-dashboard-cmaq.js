@@ -1,23 +1,19 @@
 // CSV parser for CMAQ (congestion management and air quality 'mpo' CSV file
 var cmaq_mpo_RowConverter = function(d) {
-	var temp = {};
-/*
-	temp = {
+	// These cells in the spreadsheet contain '%' symbols for some reason
+	var retval = {
 		perf_meas:		d['Performance Measure'],
-		baseline:		+d['Baseline'].replace('%',''),
-		targ_2025:		+d['Four Year Target (2025)'].replace('%',''),
-		targ_2023:		+d['Two Year Target (2023)'].replace('%',''),
-		targ_2021:		+d['Four Year Target (2021)'].replace('%',''),
-		targ_2019:		+d['Two Year Target (2019)'].replacce('%',''),
-		
-		perf_2021:		+d['Four Year Performance (2021)'].replace('%',''),
-		perf_2020:		+d['Performance 2020'].replace('%',''),
-		perf_2019:		+d['Two Year Performance (2019)'].replace('%',''),
-		perf_2018:		+d['Performance 2018'].replace('%',''),
-		perf_2017:		+d['Performance 2017'].replace('%','')
+		baseline:		+(d['Baseline'].replace('%','')),
+		targ_2025:		+(d['Four Year Target (2025)'].replace('%','')),
+		targ_2023:		+(d['Two Year Target (2023)'].replace('%','')),
+		targ_2021:		+(d['Two Year Target (2019)'].replace('%','')),
+		perf_2021:		+(d['Four Year Performance (2021)'].replace('%','')),
+		perf_2020:		+(d['Performance 2020'].replace('%','')),
+		perf_2019:		+(d['Two Year Performance (2019)'].replace('%','')),
+		perf_2018:		+(d['Performance 2018'].replace('%','')),
+		perf_2017:		+(d['Performance 2017'].replace('%',''))
 	}
-*/
-	return temp;
+	return retval;
 };
 
 
