@@ -19,7 +19,8 @@ var b_and_p_mpo_RowConverter = function(d) {
 
 function generate_bridge_viz(xValues, yValues_state_good, yValues_state_poor, yValues_mpo_good, yValues_mpo_poor,
                              canvas_id, chart_title, xAxis_label, yAxis_label) {
-	// Generate a line chart for bridge condition data
+	// Generate a bar chart for bridge condition data
+	// Although Sam suggested a line chart, it doesn't look very effective in practice
 	var state_good_dataset = { 	label: 'Percent in Good Condition by Deck Area (State)',
 								backgroundColor: 'rgba(0,255,0,.75)',
 								borderWidth: 1.5,
