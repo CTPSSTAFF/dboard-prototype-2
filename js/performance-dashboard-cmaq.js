@@ -82,9 +82,6 @@ function cmaq_viz(cmaq_mpo_data) {
 	yValues_targ = [ null, null, non_sov.targ_2019, null, null, null, non_sov.targ_2023, null, non_sov.targ_2025 ];
 	
 	generate_cmaq_viz(xValues, yValues_targ, yValues_perf, canvas_id, title, xAxis_label, yAxis_label);
-
-
-	
 	
 	
 	// Generate a line chart for the annual hours of PHED
@@ -98,13 +95,7 @@ function cmaq_viz(cmaq_mpo_data) {
 	yValues_perf = [ phed.perf_2017, phed.perf_2018, phed.perf_2019, phed.perf_2020, phed.perf_2021, null, null, null, null ];
 	yValues_targ = [ null, null, phed.targ_2019, null, null, null, phed.targ_2023, null, phed.targ_2025 ];
 	
-	
 	generate_cmaq_viz(xValues, yValues_targ, yValues_perf, canvas_id, title, xAxis_label, yAxis_label);
-	
-	
-	
-	
-	return; // for now
 	
 	
 	// Generate a line chart for emissions reductions
@@ -113,7 +104,12 @@ function cmaq_viz(cmaq_mpo_data) {
 	xAxis_label = 'Year';
 	xAxis_label = 'Percent';
 	
-	generate_cmaq_viz(xValues, yValues_nonsov_targ, yValues_nonsov_perf, canvas_id, title, xAxis_label, yAxis_label);
+	var emissions = _.find(cmaq_mpo_data, 
+	                       function(o) { return o.perf_meas == 'Total emissions reduction for applicable pollutants and precursors for CMAQ funded projects in designated nonattainment and maintenance areas'; });
 	
+	yValues_perf = [ emissions.perf_2017, emissions.perf_2018, emissions.perf_2019, emissions.perf_2020, emissions.perf_2021, null, null, null, null ];
+	yValues_targ = [ null, null, emissions.targ_2019, null, null, null, emissions.targ_2023, null, emissions.targ_2025 ];
+	
+	generate_cmaq_viz(xValues, yValues_targ, yValues_perf, canvas_id, title, xAxis_label, yAxis_label);
 } // cmaq_viz
 
