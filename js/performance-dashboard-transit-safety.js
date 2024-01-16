@@ -131,6 +131,16 @@ function transit_safety_viz(ts_mpo_data) {
 	
 	generate_mbta_safety_viz(xValues, yValues_bus, yValues_hr, yValues_lr, yValues_pt, canvas_id, title, xAxis_label, yAxis_label);
 	
+	// Transit safety events - MBTA
+	canvas_id = 'safety-mbta';
+	title = 'Safety Events';
+	yAxis_label = 'Saftey Events';
+	yValues_bus = [ mbta_bus_fat.targ_2023_saf, mbta_bus_fat.perf_2019_21_saf ];
+	yValues_hr =  [ mbta_hr_fat.targ_2023_saf,  mbta_hr_fat.perf_2019_21_saf ];
+	yValues_lr =  [ mbta_lr_fat.targ_2023_saf,  mbta_lr_fat.perf_2019_21_saf ];
+	yValues_pt =  [ mbta_pt_fat.targ_2023_saf,  mbta_pt_fat.perf_2019_21_saf ];
+	
+	generate_mbta_safety_viz(xValues, yValues_bus, yValues_hr, yValues_lr, yValues_pt, canvas_id, title, xAxis_label, yAxis_label);
 	
 	return; // for now
 } // transit_safety_viz
