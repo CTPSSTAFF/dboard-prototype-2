@@ -9,13 +9,13 @@ var ts_mpo_RowConverter = function(d) {
 		targ_2023_inj:			+d['2023 Target - Injuries'],	
 		perf_2019_21_inj:		+d['2019-21 Performance - Injuries'], 
 		targ_2023_inj_rate:		+d['2023 Target - Injury Rate'], 
-		perf_2019_21_inr_rate:	+d['2019-21 Performance - Injury Rate'],
+		perf_2019_21_inj_rate:	+d['2019-21 Performance - Injury Rate'],
 		targ_2023_saf:			+d['2023 Target - Safety Events'],
 		perf_2019_21_saf:		+d['2019-21 Performance - Safety Events'],
 		targ_2023_saf_rate:		+d['2023 Target - Safety Event Rate'], 
 		perf_2019_21_saf_rate:	+d['2019-21 Performance - Safety Event Rate'],
-		targ_2023_sys:			+d['2023 Target - System Reliability in Miles'],
-		perf_2019_21_sys:		+d['2019-21 Performance - System Reliability in Miles']
+		targ_2023_sys_rel:		+d['2023 Target - System Reliability in Miles'],
+		perf_2019_21_sys_rel:	+d['2019-21 Performance - System Reliability in Miles']
 	};
 };
 
