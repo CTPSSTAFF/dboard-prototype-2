@@ -120,6 +120,18 @@ function transit_safety_viz(ts_mpo_data) {
 	
 	generate_mbta_safety_viz(xValues, yValues_bus, yValues_hr, yValues_lr, yValues_pt, canvas_id, title, xAxis_label, yAxis_label);
 	
+	// Transit serious injuries rate - MBTA
+	canvas_id = 'injury-rate-mbta';
+	title = 'Serious Injury Rate';
+	yAxis_label = 'Serious Injury Rate';
+	yValues_bus = [ mbta_bus_fat.targ_2023_inj_rate, mbta_bus_fat.perf_2019_21_inj_rate ];
+	yValues_hr =  [ mbta_hr_fat.targ_2023_inj_rate,  mbta_hr_fat.perf_2019_21_inj_rate ];
+	yValues_lr =  [ mbta_lr_fat.targ_2023_inj_rate,  mbta_lr_fat.perf_2019_21_inj_rate ];
+	yValues_pt =  [ mbta_pt_fat.targ_2023_inj_rate,  mbta_pt_fat.perf_2019_21_inj_rate ];
+	
+	generate_mbta_safety_viz(xValues, yValues_bus, yValues_hr, yValues_lr, yValues_pt, canvas_id, title, xAxis_label, yAxis_label);
+	
+	
 	return; // for now
 } // transit_safety_viz
 
