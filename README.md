@@ -30,6 +30,22 @@ The CSV files have been copied into this repo, and have been renamed \(by
 replacing blanks and other non-alphanumeric characters with underscores\) 
 in order to have file names that won't be problematical on LINUX-based web servers.
 
+There are 6 categories of performance data rendered by the app.
+For some categories, there is both 'statewide' and 'MPO area' data;
+for others, there is only 'MPO area' data. When there is both 'statewide'
+and 'MPO area' data for a given category, it is stored in _separate_ CSV files 
+that do not necessarily have identical 'schemas' \(i.e.,e row- and column-organization\).
+The following table summarizes this situation:
+
+| Category | Statewide | MPO area |
+| --- | --- | --- |
+| Roadway Safety | x | x |
+| Transit Safety |  | x |
+| Transit Asset Management |  | x |
+| Bridge and Pavement Condition | x | x |
+| Travel-time Reliability | x | x |
+| CMAQ |  | x |
+
 # Page Layout 
 The layout of the single page containing the was created using [Bootstrap](https://getbootstrap.com/).
 The layout organizes the page into a number of 'pills' \(similar to 'tabs'\).
@@ -116,3 +132,5 @@ When all the CSV files have been successfully loaded, the __Part 2__ function is
 \(If there were errors loading the CSV files, the __Part 3__ function is called.)
 Part 2 simply passes the results of parsing the CSV files to the main 'driver' function
 responsible for generating the visualizations of each 'class' of performance data.
+
+### The 'Data-class Specific Code
