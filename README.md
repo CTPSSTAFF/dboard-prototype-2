@@ -14,10 +14,10 @@ As requested by Sam Taylor.
 
 Bar charts:
 * Roadway safety - implemented in current version
-* Transit safety
+* Transit safety - implemented in curretn version (MBTA only)
 * Transit asset management
 
 Line charts:
-* Bridge and pavement condition
+* Bridge and pavement condition - implemented in current version
 * TTR - implemented in current version
 * CMAQ - implemented in current version
