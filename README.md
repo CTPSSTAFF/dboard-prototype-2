@@ -133,7 +133,7 @@ When all the CSV files have been successfully loaded, the __Part 2__ function is
 Part 2 simply passes the results of parsing the CSV files to the main 'driver' function
 responsible for generating the visualizations of each 'class' of performance data.
 
-### The Catecory-Specific Code
+### The Category-Specific Code
 There is one main 'driver' routine for producing the visualization for each
 of the 6 categories of performance data. Depending upon whether there is both
 'statewide' and 'MPO area' or only 'MPO area' data for a particular category,
