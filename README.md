@@ -112,7 +112,7 @@ function initialize() {
 	});
 }
 ```
-I have added comments to the code sinpped above, to simplify the reader's 'navigation' of the
+I have added comments to the code sinppet above, to simplify the reader's 'navigation' of the
 code while reading the following description. 
 Each 'part' consists of an anonymous JavaScript function.
 
