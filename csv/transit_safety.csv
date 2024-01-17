@@ -1,9 +1,0 @@
-Agency,Performance Area or Asset Category,Mode,2023 Target - Fatalities,2019-21 Performance - Fatalities,2023 Target - Fatality Rate,2019-21 Performance - Fatality Rate,2023 Target - Injuries,2019-21 Performance - Injuries,2023 Target - Injury Rate,2019-21 Performance - Injury Rate,2023 Target - Safety Events,2019-21 Performance - Safety Events,2023 Target - Safety Event Rate,2019-21 Performance - Safety Event Rate,2023 Target - System Reliability,2019-21 Performance - System Reliability
-MBTA,Safety,Bus,0,3,0,0.05,286,875,12.23,12.48,98,300,4.21,4.29,29500,29099
-MBTA,Safety,Heavy Rail,0,1,0,0.01,180,552,7.99,8.16,24,74,1.07,1.09,44500,43713
-MBTA,Safety,Light Rail,0,0,0,0,79,242,14.35,14.64,27,84,4.94,5.04,7650,7515
-MBTA,Safety,Paratransit,0,0,0,0,27,82,2.27,2.31,20,62,1.74,1.77,62500,61231
-CATA,Safety,Fixed Route,0,0,0,0,1,0.2,0.5,0.1,2.5,2.4,1.5,0.2,70000,73603
-CATA,Safety,Demand Response,0,0,0,0,1,0.2,0.5,0.2,1.5,1.2,1,0.8,135000,133848
-MWRTA,Safety,Fixed Route,0,0,0,0,12,0.6,1,0.05,15,1.4,1.25,0.13,75000,128551
-MWRTA,Safety,Demand Response,0,0,0,0,8,0.6,1,0.07,10,1.6,1.25,0.2,75000,67468
