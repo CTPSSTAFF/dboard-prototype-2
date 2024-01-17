@@ -41,16 +41,12 @@ function initialize() {
 		ttr_state_data	= files[6];
 		ttr_mpo_data	= files[7];
 		cmaq_mpo_data 	= files[8];
-		//
-		console.log('Initialization successful.');
-		var _DEBUG_HOOK = 0;
 		roadway_safety_viz(rs_state_data, rs_mpo_data);
 		transit_safety_viz(ts_mpo_data);
 		tam_viz(tam_mpo_data);
 		bridge_pavement_viz(bp_state_data, bp_mpo_data);
 		ttr_viz(ttr_state_data, ttr_mpo_data);
 		cmaq_viz(cmaq_mpo_data);
-		_DEBUG_HOOK = 1;
 	}).catch(function(err) {
 		var _DEBUG_HOOK = 0;
 		alert('Error during initialization. Exiting.');
