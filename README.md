@@ -22,6 +22,18 @@ Line charts:
 * TTR - implemented in current version
 * CMAQ - implemented in current version
 
+## Data 
+The data for the application was compiled by Sam Taylor and 
+is found in this [Google Drive folder](https://drive.google.com/drive/u/0/folders/1__VECPvTx3DuBCAkn20ojae9joF3sOHB).
+The data consists of 9 CSV files.
+The CSV files have been copied into this repo, and have been renamed \(by 
+replacing blanks and other non-alphanumeric characters with underscores\) 
+in order to have file names that won't be problematical on LINUX-based web servers.
+
+# Page Layout 
+The layout of the single page containing the was created using [Bootstrap](https://getbootstrap.com/).
+The layout organizes the page into a number of 'pills' \(similar to 'tabs'\).
+
 ## Organization of the Code
 The code for this app is currently organized in 7 JavaScript source files: one 'main' 
 file \(__performance-dashboard-main.js\) containing the application initializion code,
@@ -32,7 +44,7 @@ into a single file \(which itself could be minifiled\) to optimize app download 
 start-up time, if this ever becomes a concern. \(This isn't the case at the moment.\)
 
 ### App Start-up
-The the single HTML file for the app \(__index.html\) contains a single \<script\>
+The thesingle HTML file for the app \(__index.html__\) contains a single \<script\>
 tag that 'kicks' off the application. It reads as follows:
 ```
 <script> 
