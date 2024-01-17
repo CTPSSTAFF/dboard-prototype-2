@@ -52,8 +52,8 @@ The layout organizes the page into a number of 'pills' \(similar to 'tabs'\).
 
 ## Organization of the Code
 The code for this app is currently organized in 7 JavaScript source files: one 'main' 
-file \(__performance-dashboard-main.js\) containing the application initializion code,
-and one file for each of the 6 'classes' of performance data. 
+file \(__performance-dashboard-main.js__\) containing the application initializion code,
+and one file for each of the 6 'classes' of performance data.  
 This organization is soley for convenience and simplicity
 during development. In practice, the contents of all these files could be concatenated
 into a single file \(which itself could be minifiled\) to optimize app download and
@@ -69,7 +69,7 @@ tag that 'kicks' off the application. It reads as follows:
 ```
 Here, we use the jQuery library to 'listen' for the browser firing the __ready__
 event on the page. When this event is fired, the code snippet above calls the app's
-__initialize__ function, in \(__performance-dashboard-main.js \).
+__initialize__ function, in \(__performance-dashboard-main.js__ \).
 
 ### App Initialization Code
 The main driver code contains the URLs for the 9 CSV files containing the data to be
