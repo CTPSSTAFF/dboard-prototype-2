@@ -133,4 +133,15 @@ When all the CSV files have been successfully loaded, the __Part 2__ function is
 Part 2 simply passes the results of parsing the CSV files to the main 'driver' function
 responsible for generating the visualizations of each 'class' of performance data.
 
-### The 'Data-class Specific Code
+### The Catecory-Specific Code
+There is one main 'driver' routine for producing the visualization for each
+of the 6 categories of performance data. Depending upon whether there is both
+'statewide' and 'MPO area' or only 'MPO area' data for a particular category,
+the main 'driver' for it is passed either two or one parameters. The values 
+passed for these parameters are the _parsed_ data read from the relevant CSV file\(s\).
+
+The main business of these 'driver' routines are to extract information from the 
+raw parsed data passed to it, and 'package' it in a form suitable for the 
+generation of each required visualization. The driver routines then call one 
+or more category-specific routines that contain the code to generate a Chart.js
+visualization.
