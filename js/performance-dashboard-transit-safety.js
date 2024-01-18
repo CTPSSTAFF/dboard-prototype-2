@@ -215,14 +215,10 @@ function transit_safety_viz(ts_mpo_data) {
 	canvas_id = 'fatalities-cata';
 	title = 'Transit Fatalities';
 	yAxis_label = 'Fatalities';
-	
 	var cata_fixed_fat = _.find(ts_mpo_data, function(o) { return o.agency == 'CATA' && o.mode == 'Fixed Route'; });     
 	var cata_demand_fat  = _.find(ts_mpo_data, function(o) { return o.agency == 'CATA' && o.mode == 'Demand Response';  });
-
-	
 	yValues_fixed = [ cata_fixed_fat.targ_2023_fat, cata_fixed_fat.perf_2019_21_fat ];
 	yValues_demand  = [ cata_demand_fat.targ_2023_fat, cata_demand_fat.perf_2019_21_fat ];
-	
 	generate_cata_mwrta_safety_viz(xValues, yValues_fixed, yValues_demand, canvas_id, title, xAxis_label, yAxis_label);
 	
 	
@@ -230,11 +226,29 @@ function transit_safety_viz(ts_mpo_data) {
 	canvas_id = 'fatality-rate-cata';
 	title = 'Fataility Rate';
 	yAxis_label = 'Fatality Rate';
-	
 	yValues_fixed = [ cata_fixed_fat.targ_2023_fat_rate, cata_fixed_fat.perf_2019_21_fat_rate ];
 	yValues_demand  = [ cata_demand_fat.targ_2023_fat_rate, cata_demand_fat.perf_2019_21_fat_rate ];
-	
 	generate_cata_mwrta_safety_viz(xValues, yValues_fixed, yValues_demand, canvas_id, title, xAxis_label, yAxis_label);
+	
+	// Injuries - CATA
+	canvas_id = 'injuries-cata';
+	title = 'Serious Injuries';
+	yAxis_label = 'Serious Injuries';
+	yValues_fixed = [ cata_fixed_fat.targ_2023_inj, cata_fixed_fat.perf_2019_21_inj ];
+	yValues_demand  = [ cata_demand_fat.targ_2023_inj, cata_demand_fat.perf_2019_21_inj ];
+	generate_cata_mwrta_safety_viz(xValues, yValues_fixed, yValues_demand, canvas_id, title, xAxis_label, yAxis_label);
+	
+	// Injury rate - CATA
+	canvas_id = 'injury-rate-cata';
+	title = 'Injury Rate';
+	yAxis_label = 'Injury Rate';
+	yValues_fixed = [ cata_fixed_fat.targ_2023_inj_rate, cata_fixed_fat.perf_2019_21_inj_rate ];
+	yValues_demand  = [ cata_demand_fat.targ_2023_inj_rate, cata_demand_fat.perf_2019_21_inj_rate ];
+	generate_cata_mwrta_safety_viz(xValues, yValues_fixed, yValues_demand, canvas_id, title, xAxis_label, yAxis_label);
+	
+	
+	
+	
 	
 	
 	/////////////////////////////////////////////
@@ -242,26 +256,37 @@ function transit_safety_viz(ts_mpo_data) {
 	//
 	// Transit fatalities - MWRTA
 	canvas_id = 'fatalities-mwrta';
-	title = 'Transit Fatalities';
+	title = 'Fatalities';
 	yAxis_label = 'Fatalities';
 	
 	var mwrta_fixed_fat = _.find(ts_mpo_data, function(o) { return o.agency == 'MWRTA' && o.mode == 'Fixed Route'; });     
 	var mwrta_demand_fat  = _.find(ts_mpo_data, function(o) { return o.agency == 'MWRTA' && o.mode == 'Demand Response';  });
-	
 	yValues_fixed = [ mwrta_fixed_fat.targ_2023_fat, mwrta_fixed_fat.perf_2019_21_fat ];
 	yValues_demand  = [ mwrta_demand_fat.targ_2023_fat, mwrta_demand_fat.perf_2019_21_fat ];
-	
 	generate_cata_mwrta_safety_viz(xValues, yValues_fixed, yValues_demand, canvas_id, title, xAxis_label, yAxis_label);
-	
 	
 	// Fatality rate - MWRTA
 	canvas_id = 'fatality-rate-mwrta';
 	title = 'Fataility Rate';
 	yAxis_label = 'Fatality Rate';
-	
 	yValues_fixed = [ mwrta_fixed_fat.targ_2023_fat_rate, mwrta_fixed_fat.perf_2019_21_fat_rate ];
 	yValues_demand  = [ mwrta_demand_fat.targ_2023_fat_rate, mwrta_demand_fat.perf_2019_21_fat_rate ];
+	generate_cata_mwrta_safety_viz(xValues, yValues_fixed, yValues_demand, canvas_id, title, xAxis_label, yAxis_label);
 	
+	// Injuries - MMWRTA
+	canvas_id = 'injuries-mwrta';
+	title = 'Serious Injuries';
+	yAxis_label = 'Serious Injuries';
+	yValues_fixed = [ mwrta_fixed_fat.targ_2023_inj_rate, mwrta_fixed_fat.perf_2019_21_inj_rate ];
+	yValues_demand  = [ mwrta_demand_fat.targ_2023_inj_rate, mwrta_demand_fat.perf_2019_21_inj_rate ];
+	generate_cata_mwrta_safety_viz(xValues, yValues_fixed, yValues_demand, canvas_id, title, xAxis_label, yAxis_label);
+	
+	// Injury rate - MWRTA
+	canvas_id = 'injury-rate-mwrta';
+	title = 'Injury Rate';
+	yAxis_label = 'Injury Rate';
+	yValues_fixed = [ mwrta_fixed_fat.targ_2023_inj_rate, mwrta_fixed_fat.perf_2019_21_inj_rate ];
+	yValues_demand  = [ mwrta_demand_fat.targ_2023_inj_rate, mwrta_demand_fat.perf_2019_21_inj_rate ];
 	generate_cata_mwrta_safety_viz(xValues, yValues_fixed, yValues_demand, canvas_id, title, xAxis_label, yAxis_label);
 	
 	
