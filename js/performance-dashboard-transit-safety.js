@@ -72,7 +72,7 @@ function generate_mbta_safety_viz(xValues, yValues_bus, yValues_hr, yValues_lr, 
 function transit_safety_viz(ts_mpo_data) {
 	console.log('Entered transit_safety_viz');
 	
-	// Generate a bar chart for the transit safety data
+	// Generate bar charts for the transit safety data
 	
 	var xValues = ['2023 Target', '2019-21 Performance'];
 	var yValues_bus = [], yValues_hr = [], yValues_lr = [], yValues_pt = [];
@@ -81,6 +81,9 @@ function transit_safety_viz(ts_mpo_data) {
 	var yAxis_label = '';
 	var title = '';
 	
+	/////////////////////////////////////////////
+	// MBTA
+	//
 	// Transit fatalities -- MBTA
 	canvas_id = 'fatalities-mbta';
 	title = 'Transit Fatalities';
@@ -163,6 +166,18 @@ function transit_safety_viz(ts_mpo_data) {
 	yValues_pt =  [ mbta_pt_fat.targ_2023_sys_rel,  mbta_pt_fat.perf_2019_21_sys_rel ];
 	
 	generate_mbta_safety_viz(xValues, yValues_bus, yValues_hr, yValues_lr, yValues_pt, canvas_id, title, xAxis_label, yAxis_label);
-	return; // for now
+	
+	
+	/////////////////////////////////////////////
+	// CATA
+	//
+	
+	
+	/////////////////////////////////////////////
+	// MWRTA
+	//
+	//
+	
+	return;
 } // transit_safety_viz
 
