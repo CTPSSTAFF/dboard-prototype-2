@@ -67,9 +67,9 @@ tag that 'kicks' off the application. It reads as follows:
 	$(document).ready(function() { initialize(); });
 </script>
 ```
-Here, we use the jQuery library to 'listen' for the browser firing the __ready__
-event on the page. When this event is fired, the code snippet above calls the app's
-__initialize__ function, in \(__performance-dashboard-main.js__ \).
+Here, we use [jQuery](https://jquery.com/) to 'listen' for the browser firing the __ready__
+event on the page \(i.e., the HTML 'document'\). When this event is fired, the code snippet 
+above calls the app's__initialize__ function, in \(__performance-dashboard-main.js__\).
 
 ### App Initialization Code
 The main driver code contains the URLs for the 9 CSV files containing the data to be
@@ -145,3 +145,65 @@ raw parsed data passed to it, and 'package' it in a form suitable for the
 generation of each required visualization. The driver routines then call one 
 or more category-specific routines that contain the code to generate a Chart.js
 visualization.
+
+### Extracting Data from the Parsed CSV files
+As noted above, we use d3.js CSV loader to not only load the CSV files, but also to parse
+their contents into an array of JavaScript objects: one object for each 'row' \(aside from the header row\)
+in the input CSV file.
+Each such object contains a property \(whose name is assigned by the relevant user-supplied parsing function\)
+for each 'column' in the row. \(Note that input columns can be ignored by the parsing function.\)
+
+The result is an in-memory 'table' that can be queried in much the same manner as a database table.
+We use functions from the [lodash.js](https://lodash.com/) functional programming library (__find__ and __filter__) to
+execute these queries.
+
+The signature of the __find__ function is:
+```
+_.find(collection, [predicate=_.identity], [fromIndex=0])
+```
+* The first parameter \(__collection__\) is the array to be queried
+* The second parameter \(__predicate__\) is the 'query logic' \(more on this below\)
+* The optional third parameter \(__fromIndex__\) is not used in the current application
+
+The __predicate__ is a function that returns __true__ or __false__ given the data passed to it.  
+When the __find__ function is called, __predicate__ is invoked on each element of __collection__, until either the __predicate__ returns __true__
+or the end of the array is reached.
+The return value of a call to __find__ is the element for which __predicate__ returned __true__;
+the return value is __undefined__ if no value satisfied __predicate__.
+
+An example may be helpful for those not familiar with functional programming:
+```
+var myCollection = [ { name: 'Matilda', eyes: 'brown' }, { name: 'Betsy', eyes: 'blue' }, { name: 'Abigail', eyes: 'green'}, { name: 'Luigi', eyes: 'brown' } ];
+var myPredicate = function(rec) { return rec.eyes == 'brown'; };
+
+var result = _.find(myCollection, myPredicate);
+
+// result is [ { name: 'Matilda', eyes: 'brown' } ];
+
+// Note that the predicate can be -  and commonly is - passed as an anonmyous function:
+var result = _.find(myCollection, function(rec) { return rec.eyes == 'brown'; });
+```
+
+The signature of the __filter__ function is:
+```
+_.filter(collection, [predicate=_.identity])
+```
+* The first parameter \(__collection__\) is the array to be queried
+* The second parameter \(__predicate__\) is the 'query logic'
+
+When the __filter__ function is called, __predicate__ is invoked on each element of __collection__.
+The return value of a call to __filter__ is the array of elements from __collection__ for which __predicate__ 
+returned __true__. \(Note that the return value can be an empty array: \[\] when there are no such elements.\)
+
+Again, an example may be helpful:
+```
+var myCollection = [ { name: 'Matilda', eyes: 'brown' }, { name: 'Betsy', eyes: 'blue' }, { name: 'Abigail', eyes: 'green'}, { name: 'Luigi', eyes: 'brown' } ];
+var myPredicate = function(rec) { return rec.eyes == 'brown'; };
+
+var result = _.filter(myCollection, myPredicate);
+
+// result is [ { name: 'Matilda', eyes: 'brown' }, { name: 'Luigi', eyes: 'brown' } ];
+
+// Note that the predicate can be -  and commonly is - passed as an anonmyous function:
+var result = _.filter(myCollection, function(rec) { return rec.eyes == 'brown'; });
+```
