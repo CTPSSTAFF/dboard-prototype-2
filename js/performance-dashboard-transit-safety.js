@@ -20,6 +20,7 @@ var ts_mpo_RowConverter = function(d) {
 	};
 };
 
+// Generate Chart.js visualization of transit saftey data for the MBTA
 function generate_mbta_safety_viz(xValues, yValues_bus, yValues_hr, yValues_lr, yValues_pt, canvas_id, chart_title, xAxis_label, yAxis_label) {
 	var bus_dataset = { label: 'Bus',
 						backgroundColor: 'rgba(58,200,225,.75)',
@@ -68,6 +69,45 @@ function generate_mbta_safety_viz(xValues, yValues_bus, yValues_hr, yValues_lr, 
 	}
 	new Chart(ctx, cfg);
 } // generate_mbta_safety_viz
+
+// Generate Chart.js visualization of transit saftey data for CATA and MWRTA
+function generate_cata_mwrta_safety_viz(xValues, yValues_fixed, yValues_demand, canvas_id, chart_title, xAxis_label, yAxis_label) {
+	var fixed_dataset = { 	label: 'Fixed Route',
+							backgroundColor: 'rgba(58,200,225,.75)',
+							borderWidth: 1.5,
+							borderColor:  'rgb(8,48,107)',
+							data: yValues_fixed
+						};
+	var demand_dataset = { 	label: 'Demand Response',
+							backgroundColor: 'rgb(00,204,107,.75)',
+							borderWidth: 1.5,
+							borderColor: 'rgb(8,48,107)',
+							data: yValues_demand
+						};
+
+	
+	var aDatasets = [ fixed_dataset, demand_dataset];
+	var ctx = document.getElementById(canvas_id);
+	var cfg = {
+		type: 'bar',
+		data: {
+			datasets: aDatasets,
+			labels: xValues
+		},
+		options: {
+			plugins: {
+				title: { display: true,
+				         text: chart_title 
+				}
+			},
+			scales: {
+				x: { title: { display: true,  text: xAxis_label } },
+				y: { title: { display: true,  text: yAxis_label } }
+			}
+		}
+	}
+	new Chart(ctx, cfg);
+} // generate_cata_mwrta_safety_viz
 
 function transit_safety_viz(ts_mpo_data) {
 	console.log('Entered transit_safety_viz');
@@ -171,12 +211,38 @@ function transit_safety_viz(ts_mpo_data) {
 	/////////////////////////////////////////////
 	// CATA
 	//
+	// Transit fatalities - CATA
+	canvas_id = 'fatalities-cata';
+	title = 'Transit Fatalities';
+	yAxis_label = 'Fatalities';
+	
+	var cata_fixed_fat = _.find(ts_mpo_data, function(o) { return o.agency == 'CATA' && o.mode == 'Fixed Route'; });     
+	var cata_demand_fat  = _.find(ts_mpo_data, function(o) { return o.agency == 'CATA' && o.mode == 'Demand Response';  });
+
+	
+	yValues_fixed = [ cata_fixed_fat.targ_2023_fat, cata_fixed_fat.perf_2019_21_fat ];
+	yValues_demand  = [ cata_demand_fat.targ_2023_fat, cata_demand_fat.perf_2019_21_fat ];
+	
+	generate_cata_mwrta_safety_viz(xValues, yValues_fixed, yValues_demand, canvas_id, title, xAxis_label, yAxis_label);
+	
 	
 	
 	/////////////////////////////////////////////
 	// MWRTA
 	//
-	//
+	// Transit fatalities - MWRTA
+	canvas_id = 'fatalities-mwrta';
+	title = 'Transit Fatalities';
+	yAxis_label = 'Fatalities';
+	
+	var mwrta_fixed_fat = _.find(ts_mpo_data, function(o) { return o.agency == 'MWRTA' && o.mode == 'Fixed Route'; });     
+	var mwrta_demand_fat  = _.find(ts_mpo_data, function(o) { return o.agency == 'MWRTA' && o.mode == 'Demand Response';  });
+	
+	yValues_fixed = [ mwrta_fixed_fat.targ_2023_fat, mwrta_fixed_fat.perf_2019_21_fat ];
+	yValues_demand  = [ mwrta_demand_fat.targ_2023_fat, mwrta_demand_fat.perf_2019_21_fat ];
+	
+	generate_cata_mwrta_safety_viz(xValues, yValues_fixed, yValues_demand, canvas_id, title, xAxis_label, yAxis_label);
+	
 	
 	return;
 } // transit_safety_viz
