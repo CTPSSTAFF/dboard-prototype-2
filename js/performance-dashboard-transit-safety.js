@@ -113,7 +113,6 @@ function transit_safety_viz(ts_mpo_data) {
 	console.log('Entered transit_safety_viz');
 	
 	// Generate bar charts for the transit safety data
-	
 	var xValues = ['2023 Target', '2019-21 Performance'];
 	var yValues_bus = [], yValues_hr = [], yValues_lr = [], yValues_pt = [];
 	var canvas_id = '';
@@ -133,12 +132,11 @@ function transit_safety_viz(ts_mpo_data) {
 	var mbta_hr_fat  = _.find(ts_mpo_data, function(o) { return o.agency == 'MBTA' && o.mode == 'Heavy Rail';  });
 	var mbta_lr_fat  = _.find(ts_mpo_data, function(o) { return o.agency == 'MBTA' && o.mode == 'Light Rail';  });
 	var mbta_pt_fat  = _.find(ts_mpo_data, function(o) { return o.agency == 'MBTA' && o.mode == 'Paratransit';  });
-	
+
 	yValues_bus = [ mbta_bus_fat.targ_2023_fat, mbta_bus_fat.perf_2019_21_fat ];
 	yValues_hr  = [ mbta_hr_fat.targ_2023_fat, mbta_hr_fat.perf_2019_21_fat ];
 	yValues_lr  = [ mbta_lr_fat.targ_2023_fat, mbta_lr_fat.perf_2019_21_fat ];
 	yValues_pt  = [ mbta_pt_fat.targ_2023_fat, mbta_pt_fat.perf_2019_21_fat ];
-	
 	generate_mbta_safety_viz(xValues, yValues_bus, yValues_hr, yValues_lr, yValues_pt, canvas_id, title, xAxis_label, yAxis_label);
 	
 	// Transit fataility rate - MBTA
@@ -149,7 +147,6 @@ function transit_safety_viz(ts_mpo_data) {
 	yValues_hr =  [ mbta_hr_fat.targ_2023_fat_rate,  mbta_hr_fat.perf_2019_21_fat_rate ];
 	yValues_lr =  [ mbta_lr_fat.targ_2023_fat_rate,  mbta_lr_fat.perf_2019_21_fat_rate ];
 	yValues_pt =  [ mbta_pt_fat.targ_2023_fat_rate,  mbta_pt_fat.perf_2019_21_fat_rate ];
-	
 	generate_mbta_safety_viz(xValues, yValues_bus, yValues_hr, yValues_lr, yValues_pt, canvas_id, title, xAxis_label, yAxis_label);
 	
 	// Transit serious injuries - MBTA
@@ -160,7 +157,6 @@ function transit_safety_viz(ts_mpo_data) {
 	yValues_hr =  [ mbta_hr_fat.targ_2023_inj,  mbta_hr_fat.perf_2019_21_inj ];
 	yValues_lr =  [ mbta_lr_fat.targ_2023_inj,  mbta_lr_fat.perf_2019_21_inj ];
 	yValues_pt =  [ mbta_pt_fat.targ_2023_inj,  mbta_pt_fat.perf_2019_21_inj ];
-	
 	generate_mbta_safety_viz(xValues, yValues_bus, yValues_hr, yValues_lr, yValues_pt, canvas_id, title, xAxis_label, yAxis_label);
 	
 	// Transit serious injuries rate - MBTA
@@ -171,7 +167,6 @@ function transit_safety_viz(ts_mpo_data) {
 	yValues_hr =  [ mbta_hr_fat.targ_2023_inj_rate,  mbta_hr_fat.perf_2019_21_inj_rate ];
 	yValues_lr =  [ mbta_lr_fat.targ_2023_inj_rate,  mbta_lr_fat.perf_2019_21_inj_rate ];
 	yValues_pt =  [ mbta_pt_fat.targ_2023_inj_rate,  mbta_pt_fat.perf_2019_21_inj_rate ];
-	
 	generate_mbta_safety_viz(xValues, yValues_bus, yValues_hr, yValues_lr, yValues_pt, canvas_id, title, xAxis_label, yAxis_label);
 	
 	// Transit safety events - MBTA
@@ -182,7 +177,6 @@ function transit_safety_viz(ts_mpo_data) {
 	yValues_hr =  [ mbta_hr_fat.targ_2023_saf,  mbta_hr_fat.perf_2019_21_saf ];
 	yValues_lr =  [ mbta_lr_fat.targ_2023_saf,  mbta_lr_fat.perf_2019_21_saf ];
 	yValues_pt =  [ mbta_pt_fat.targ_2023_saf,  mbta_pt_fat.perf_2019_21_saf ];
-	
 	generate_mbta_safety_viz(xValues, yValues_bus, yValues_hr, yValues_lr, yValues_pt, canvas_id, title, xAxis_label, yAxis_label);
 	
 	// Transit safety event rate - MBTA
@@ -193,7 +187,6 @@ function transit_safety_viz(ts_mpo_data) {
 	yValues_hr =  [ mbta_hr_fat.targ_2023_saf_rate,  mbta_hr_fat.perf_2019_21_saf_rate ];
 	yValues_lr =  [ mbta_lr_fat.targ_2023_saf_rate,  mbta_lr_fat.perf_2019_21_saf_rate ];
 	yValues_pt =  [ mbta_pt_fat.targ_2023_saf_rate,  mbta_pt_fat.perf_2019_21_saf_rate ];
-	
 	generate_mbta_safety_viz(xValues, yValues_bus, yValues_hr, yValues_lr, yValues_pt, canvas_id, title, xAxis_label, yAxis_label);
 	
 	// System reliability - MBTA
@@ -204,7 +197,6 @@ function transit_safety_viz(ts_mpo_data) {
 	yValues_hr =  [ mbta_hr_fat.targ_2023_sys_rel,  mbta_hr_fat.perf_2019_21_sys_rel ];
 	yValues_lr =  [ mbta_lr_fat.targ_2023_sys_rel,  mbta_lr_fat.perf_2019_21_sys_rel ];
 	yValues_pt =  [ mbta_pt_fat.targ_2023_sys_rel,  mbta_pt_fat.perf_2019_21_sys_rel ];
-	
 	generate_mbta_safety_viz(xValues, yValues_bus, yValues_hr, yValues_lr, yValues_pt, canvas_id, title, xAxis_label, yAxis_label);
 	
 	
@@ -262,7 +254,13 @@ function transit_safety_viz(ts_mpo_data) {
 	yValues_demand =  [ cata_demand.targ_2023_saf_rate,  cata_demand.perf_2019_21_saf_rate ];
 	generate_cata_mwrta_safety_viz(xValues, yValues_fixed, yValues_demand, canvas_id, title, xAxis_label, yAxis_label);
 	
-	
+	// System reliability - CATA
+	canvas_id = 'system-cata';
+	title = 'System Reliability';
+	yAxis_label = 'System Reliability';
+	yValues_fixed = [ cata_fixed.targ_2023_sys_rel, cata_fixed.perf_2019_21_sys_rel ];
+	yValues_demand =  [ cata_demand.targ_2023_sys_rel,  cata_demand.perf_2019_21_sys_rel ];
+	generate_cata_mwrta_safety_viz(xValues, yValues_fixed, yValues_demand, canvas_id, title, xAxis_label, yAxis_label);
 	
 	/////////////////////////////////////////////
 	// MWRTA
@@ -318,7 +316,12 @@ function transit_safety_viz(ts_mpo_data) {
 	yValues_demand =  [ mwrta_demand.targ_2023_saf_rate,  mwrta_demand.perf_2019_21_saf_rate ];
 	generate_cata_mwrta_safety_viz(xValues, yValues_fixed, yValues_demand, canvas_id, title, xAxis_label, yAxis_label);
 	
-		
-	return;
+	// System reliability - MWRTA
+	canvas_id = 'system-mwrta';
+	title = 'System Reliability';
+	yAxis_label = 'System Reliability';
+	yValues_fixed = [ mwrta_fixed.targ_2023_sys_rel, mwrta_fixed.perf_2019_21_sys_rel ];
+	yValues_demand =  [ mwrta_demand.targ_2023_sys_rel,  mwrta_demand.perf_2019_21_sys_rel ];
+	generate_cata_mwrta_safety_viz(xValues, yValues_fixed, yValues_demand, canvas_id, title, xAxis_label, yAxis_label);
 } // transit_safety_viz
 
