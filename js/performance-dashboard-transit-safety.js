@@ -226,6 +226,16 @@ function transit_safety_viz(ts_mpo_data) {
 	generate_cata_mwrta_safety_viz(xValues, yValues_fixed, yValues_demand, canvas_id, title, xAxis_label, yAxis_label);
 	
 	
+	// Fatality rate - CATA
+	canvas_id = 'fatality-rate-cata';
+	title = 'Fataility Rate';
+	yAxis_label = 'Fatality Rate';
+	
+	yValues_fixed = [ cata_fixed_fat.targ_2023_fat_rate, cata_fixed_fat.perf_2019_21_fat_rate ];
+	yValues_demand  = [ cata_demand_fat.targ_2023_fat_rate, cata_demand_fat.perf_2019_21_fat_rate ];
+	
+	generate_cata_mwrta_safety_viz(xValues, yValues_fixed, yValues_demand, canvas_id, title, xAxis_label, yAxis_label);
+	
 	
 	/////////////////////////////////////////////
 	// MWRTA
@@ -240,6 +250,17 @@ function transit_safety_viz(ts_mpo_data) {
 	
 	yValues_fixed = [ mwrta_fixed_fat.targ_2023_fat, mwrta_fixed_fat.perf_2019_21_fat ];
 	yValues_demand  = [ mwrta_demand_fat.targ_2023_fat, mwrta_demand_fat.perf_2019_21_fat ];
+	
+	generate_cata_mwrta_safety_viz(xValues, yValues_fixed, yValues_demand, canvas_id, title, xAxis_label, yAxis_label);
+	
+	
+	// Fatality rate - MWRTA
+	canvas_id = 'fatality-rate-mwrta';
+	title = 'Fataility Rate';
+	yAxis_label = 'Fatality Rate';
+	
+	yValues_fixed = [ mwrta_fixed_fat.targ_2023_fat_rate, mwrta_fixed_fat.perf_2019_21_fat_rate ];
+	yValues_demand  = [ mwrta_demand_fat.targ_2023_fat_rate, mwrta_demand_fat.perf_2019_21_fat_rate ];
 	
 	generate_cata_mwrta_safety_viz(xValues, yValues_fixed, yValues_demand, canvas_id, title, xAxis_label, yAxis_label);
 	
