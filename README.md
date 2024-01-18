@@ -178,7 +178,7 @@ var myPredicate = function(rec) { return rec.eyes == 'brown'; };
 
 var result = _.find(myCollection, myPredicate);
 
-// result is [ { name: 'Matilda', eyes: 'brown' } ];
+// result is { name: 'Matilda', eyes: 'brown' } 
 
 // Note that the predicate can be -  and commonly is - passed as an anonmyous function:
 var result = _.find(myCollection, function(rec) { return rec.eyes == 'brown'; });
@@ -202,7 +202,7 @@ var myPredicate = function(rec) { return rec.eyes == 'brown'; };
 
 var result = _.filter(myCollection, myPredicate);
 
-// result is [ { name: 'Matilda', eyes: 'brown' }, { name: 'Luigi', eyes: 'brown' } ];
+// result is [ { name: 'Matilda', eyes: 'brown' }, { name: 'Luigi', eyes: 'brown' } ]
 
 // Note that the predicate can be -  and commonly is - passed as an anonmyous function:
 var result = _.filter(myCollection, function(rec) { return rec.eyes == 'brown'; });
