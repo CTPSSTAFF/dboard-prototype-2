@@ -51,6 +51,15 @@ function tam_viz(tam_mpo_data) {
 	var vt  = _.find(mbta, function(o) { return o.pm_or_ac == 'Rolling Stock' && o.mode == 'Vintage Trolleys'; });
 	var pt  = _.find(mbta, function(o) { return o.pm_or_ac == 'Rolling Stock' && o.mode == 'Paratransit Vehicles'; });
 	
+	var yValues_ab = [ ab.perf_2022, ab.targ_2022, ab.targ_2023 ];
+	var yValues_b = [ b.perf_2022, b.targ_2022, b.targ_2023 ];
+	var yValues_crl = [ crl.perf_2022, crl.targ_2022, crl.targ_2023 ];
+	var yValues_crc = [ crc.perf_2022, crc.targ_2022, crc.targ_2023 ];
+	var yValues_fb = [ fb.perf_2022, fb.targ_2022, fb.targ_2023 ];
+	var yValues_hr = [ hr.perf_2022, hr.targ_2022, hr.targ_2023 ];
+	var yValues_lr = [ lr.perf_2022, lr.targ_2022, lr.targ_2023 ];
+	var yValues_vt = [ vt.perf_2022, vt.targ_2022, vt.targ_2023 ];
+	var yValues_pt = [ pt.perf_2022, pt.targ_2022, pt.targ_2023 ];
 	
 	// generate_mbta_tam_9_category_viz ....
 	
