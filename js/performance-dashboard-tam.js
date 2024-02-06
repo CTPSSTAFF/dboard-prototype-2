@@ -6,9 +6,9 @@ var tam_mpo_RowConverter = function(d) {
 		pm_or_ac:	d['Performance Measure or Asset Category'],
 		agency:		d['Agency'],
 		mode:		d['Mode'],
-		targ_2023:	+(d['2023 Target']replace('%','')),
-		perf_2022:	+(d['2022 Performance']replace('%','')),
-		targ_2022:	+(d['2021 Performance']replace('%',''))
+		targ_2023:	+(d['2023 Target'].replace('%','')),
+		perf_2022:	+(d['2022 Performance'].replace('%','')),
+		targ_2022:	+(d['2021 Performance'].replace('%',''))
 	};
 	return temp;
 };
@@ -42,7 +42,7 @@ function tam_viz(tam_mpo_data) {
 	//
 	// MBTA Rolling Stock
 	var ab  = _.find(mbta, function(o) { return o.pm_or_ac == 'Rolling Stock' && o.mode == 'Articulated Buses'; });
-	var b   = _.find(mbta, function(o) { return o.pm_or_ac == 'Rolling Stock' && o.mode == 'Busses'; });
+	var b   = _.find(mbta, function(o) { return o.pm_or_ac == 'Rolling Stock' && o.mode == 'Buses'; });
 	var crl = _.find(mbta, function(o) { return o.pm_or_ac == 'Rolling Stock' && o.mode == 'CR Locomotives'; });
 	var crc = _.find(mbta, function(o) { return o.pm_or_ac == 'Rolling Stock' && o.mode == 'CR Passenger Coaches'; });
 	var fb  = _.find(mbta, function(o) { return o.pm_or_ac == 'Rolling Stock' && o.mode == 'Ferry Boats'; });
@@ -64,11 +64,11 @@ function tam_viz(tam_mpo_data) {
 	// generate_mbta_tam_9_category_viz ....
 	
 	// MBTA Equipment
-	var equip = _.find(mbta, function(o), return o.mode == 'All Equipment'; });
+	var equip = _.find(mbta, function(o) { return o.mode == 'All Equipment'; });
 	
 	// MBTA Facilities
-	var pp = _.find(mbta, function(o) return o.mode == 'Passenger/Parking'; });
-	var am = _.find(mbta, function(o) return o.mode == 'Admin/Maintenance'; });
+	var pp = _.find(mbta, function(o) { return o.mode == 'Passenger/Parking'; });
+	var am = _.find(mbta, function(o) { return o.mode == 'Admin/Maintenance'; });
 	
 	// MBTA Fixed Guideway
 	
@@ -100,5 +100,4 @@ function tam_viz(tam_mpo_data) {
 	
 	
 	return; // for now
-	
 } // tam_viz
